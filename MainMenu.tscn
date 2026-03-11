@@ -473,10 +473,10 @@ anchor_left = 0.08
 anchor_top = 0.16
 anchor_right = 0.92
 anchor_bottom = 0.95
-offset_left = -61.559998
-offset_top = 59.68
-offset_right = 83.56
-offset_bottom = 243.1
+offset_left = -63.559998
+offset_top = 54.68
+offset_right = 75.56
+offset_bottom = 238.1
 theme_override_styles/panel = SubResource("StyleBoxTexture_cqjrg")
 
 [node name="Margin" type="MarginContainer" parent="MenuPanel" unique_id=149512783]
@@ -532,9 +532,9 @@ text = "PLAY"
 script = ExtResource("3_fx")
 
 [node name="LevelSelectButton" type="Button" parent="MenuPanel/Margin/Content/MenuButtons" unique_id=1122457800]
-custom_minimum_size = Vector2(250, 74)
 layout_mode = 2
 size_flags_horizontal = 4
+size_flags_stretch_ratio = 0.0
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_focus_color = Color(1, 1, 1, 1)
 theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
@@ -542,7 +542,7 @@ theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
 theme_override_colors/font_hover_pressed_color = Color(1, 1, 1, 1)
 theme_override_colors/font_outline_color = Color(0.61, 0.29, 0.04, 0.98)
 theme_override_constants/outline_size = 6
-theme_override_font_sizes/font_size = 34
+theme_override_font_sizes/font_size = 26
 theme_override_styles/normal = SubResource("StyleBoxFlat_levels_button")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_levels_button_pressed")
 theme_override_styles/hover = SubResource("StyleBoxFlat_levels_button_hover")
@@ -861,7 +861,6 @@ text = "Back"
 script = ExtResource("3_fx")
 
 [node name="LevelSelectOverlay" type="ColorRect" parent="." unique_id=548528257]
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -878,10 +877,10 @@ anchor_left = 0.06
 anchor_top = 0.16
 anchor_right = 0.94
 anchor_bottom = 0.82
-offset_left = 6.799999
-offset_top = -7.799988
-offset_right = 6.799988
-offset_bottom = -79.599976
+offset_left = 4.58
+offset_top = -41.32
+offset_right = 4.5799866
+offset_bottom = 87.360016
 theme_override_styles/panel = SubResource("StyleBoxFlat_overlay_panel")
 
 [node name="Margin" type="MarginContainer" parent="LevelSelectOverlay/LevelSelectPanel" unique_id=1852263695]
@@ -894,6 +893,7 @@ theme_override_constants/margin_bottom = 22
 [node name="Content" type="VBoxContainer" parent="LevelSelectOverlay/LevelSelectPanel/Margin" unique_id=996094244]
 layout_mode = 2
 theme_override_constants/separation = 16
+alignment = 1
 
 [node name="TitleLabel" type="Label" parent="LevelSelectOverlay/LevelSelectPanel/Margin/Content" unique_id=1654418304]
 layout_mode = 2
@@ -901,16 +901,19 @@ theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 30
 text = "Select Level"
 horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="LevelGridScroll" type="ScrollContainer" parent="LevelSelectOverlay/LevelSelectPanel/Margin/Content" unique_id=170598188]
 custom_minimum_size = Vector2(0, 260)
 layout_mode = 2
 size_flags_vertical = 3
+theme_override_constants/scrollbar_h_separation = 0
 horizontal_scroll_mode = 0
 
 [node name="LevelGrid" type="GridContainer" parent="LevelSelectOverlay/LevelSelectPanel/Margin/Content/LevelGridScroll" unique_id=170598189]
 layout_mode = 2
 size_flags_horizontal = 4
+size_flags_vertical = 4
 theme_override_constants/h_separation = 14
 theme_override_constants/v_separation = 14
 columns = 2
@@ -920,4 +923,3 @@ custom_minimum_size = Vector2(0, 68)
 layout_mode = 2
 text = "Back"
 script = ExtResource("3_fx")
-
