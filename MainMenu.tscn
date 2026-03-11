@@ -1,0 +1,923 @@
+[gd_scene format=3 uid="uid://fygobaxr4kon"]
+
+[ext_resource type="Script" uid="uid://ctkojdi5y0gtq" path="res://MainMenuController.gd" id="1_menu"]
+[ext_resource type="Theme" uid="uid://vd8qnjshgsu5" path="res://MenuButtonTheme.tres" id="2_theme"]
+[ext_resource type="Script" uid="uid://cb2f5ysorh44p" path="res://MenuButtonFx.gd" id="3_fx"]
+[ext_resource type="Texture2D" uid="uid://d4k5b3ts0mhut" path="res://fone.png" id="3_iwfq2"]
+[ext_resource type="Texture2D" uid="uid://cyll2o4fvo3of" path="res://logo.png" id="4_cqjrg"]
+[ext_resource type="Script" uid="uid://dvkw00ebhadqg" path="res://MenuCheckButtonFx.gd" id="5_check_fx"]
+[ext_resource type="Texture2D" uid="uid://cqs5mex82htu2" path="res://table_menu.png" id="5_e2xy7"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_cqjrg"]
+texture = ExtResource("5_e2xy7")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_play_button"]
+content_margin_left = 28.0
+content_margin_top = 20.0
+content_margin_right = 28.0
+content_margin_bottom = 20.0
+bg_color = Color(0.2, 0.83, 0.91, 0.98)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.9, 1, 1, 0.98)
+corner_radius_top_left = 28
+corner_radius_top_right = 28
+corner_radius_bottom_right = 28
+corner_radius_bottom_left = 28
+shadow_color = Color(0.04, 0.43, 0.54, 0.34)
+shadow_size = 16
+shadow_offset = Vector2(0, 10)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_play_button_pressed"]
+content_margin_left = 28.0
+content_margin_top = 22.0
+content_margin_right = 28.0
+content_margin_bottom = 18.0
+bg_color = Color(0.14, 0.74, 0.84, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.82, 0.97, 1, 0.98)
+corner_radius_top_left = 28
+corner_radius_top_right = 28
+corner_radius_bottom_right = 28
+corner_radius_bottom_left = 28
+shadow_color = Color(0.04, 0.34, 0.41, 0.22)
+shadow_size = 6
+shadow_offset = Vector2(0, 3)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_play_button_hover"]
+content_margin_left = 28.0
+content_margin_top = 20.0
+content_margin_right = 28.0
+content_margin_bottom = 20.0
+bg_color = Color(0.3, 0.9, 0.97, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.96, 1, 1, 1)
+corner_radius_top_left = 28
+corner_radius_top_right = 28
+corner_radius_bottom_right = 28
+corner_radius_bottom_left = 28
+shadow_color = Color(0.04, 0.47, 0.58, 0.42)
+shadow_size = 18
+shadow_offset = Vector2(0, 12)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_levels_button"]
+content_margin_left = 28.0
+content_margin_top = 18.0
+content_margin_right = 28.0
+content_margin_bottom = 18.0
+bg_color = Color(1, 0.66, 0.18, 0.98)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(1, 0.93, 0.71, 0.98)
+corner_radius_top_left = 28
+corner_radius_top_right = 28
+corner_radius_bottom_right = 28
+corner_radius_bottom_left = 28
+shadow_color = Color(0.65, 0.33, 0.03, 0.32)
+shadow_size = 14
+shadow_offset = Vector2(0, 9)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_levels_button_pressed"]
+content_margin_left = 28.0
+content_margin_top = 20.0
+content_margin_right = 28.0
+content_margin_bottom = 16.0
+bg_color = Color(0.95, 0.58, 0.12, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(1, 0.9, 0.66, 0.96)
+corner_radius_top_left = 28
+corner_radius_top_right = 28
+corner_radius_bottom_right = 28
+corner_radius_bottom_left = 28
+shadow_color = Color(0.53, 0.26, 0.03, 0.22)
+shadow_size = 6
+shadow_offset = Vector2(0, 3)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_levels_button_hover"]
+content_margin_left = 28.0
+content_margin_top = 18.0
+content_margin_right = 28.0
+content_margin_bottom = 18.0
+bg_color = Color(1, 0.73, 0.25, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(1, 0.96, 0.78, 1)
+corner_radius_top_left = 28
+corner_radius_top_right = 28
+corner_radius_bottom_right = 28
+corner_radius_bottom_left = 28
+shadow_color = Color(0.72, 0.38, 0.05, 0.38)
+shadow_size = 16
+shadow_offset = Vector2(0, 11)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_endless_button"]
+content_margin_left = 28.0
+content_margin_top = 18.0
+content_margin_right = 28.0
+content_margin_bottom = 18.0
+bg_color = Color(0.69, 0.58, 0.95, 0.98)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.94, 0.91, 1, 0.98)
+corner_radius_top_left = 28
+corner_radius_top_right = 28
+corner_radius_bottom_right = 28
+corner_radius_bottom_left = 28
+shadow_color = Color(0.31, 0.21, 0.56, 0.28)
+shadow_size = 14
+shadow_offset = Vector2(0, 9)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_endless_button_pressed"]
+content_margin_left = 28.0
+content_margin_top = 20.0
+content_margin_right = 28.0
+content_margin_bottom = 16.0
+bg_color = Color(0.6, 0.49, 0.88, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.92, 0.88, 1, 0.95)
+corner_radius_top_left = 28
+corner_radius_top_right = 28
+corner_radius_bottom_right = 28
+corner_radius_bottom_left = 28
+shadow_color = Color(0.27, 0.18, 0.47, 0.22)
+shadow_size = 6
+shadow_offset = Vector2(0, 3)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_endless_button_hover"]
+content_margin_left = 28.0
+content_margin_top = 18.0
+content_margin_right = 28.0
+content_margin_bottom = 18.0
+bg_color = Color(0.75, 0.65, 1, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.97, 0.95, 1, 1)
+corner_radius_top_left = 28
+corner_radius_top_right = 28
+corner_radius_bottom_right = 28
+corner_radius_bottom_left = 28
+shadow_color = Color(0.35, 0.24, 0.6, 0.34)
+shadow_size = 16
+shadow_offset = Vector2(0, 11)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_settings_button"]
+content_margin_left = 18.0
+content_margin_top = 14.0
+content_margin_right = 18.0
+content_margin_bottom = 14.0
+bg_color = Color(0.83, 0.59, 0.95, 0.97)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.97, 0.9, 1, 0.98)
+corner_radius_top_left = 22
+corner_radius_top_right = 22
+corner_radius_bottom_right = 22
+corner_radius_bottom_left = 22
+shadow_color = Color(0.42, 0.18, 0.56, 0.22)
+shadow_size = 10
+shadow_offset = Vector2(0, 7)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_settings_button_pressed"]
+content_margin_left = 18.0
+content_margin_top = 16.0
+content_margin_right = 18.0
+content_margin_bottom = 12.0
+bg_color = Color(0.75, 0.5, 0.89, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.95, 0.86, 1, 0.96)
+corner_radius_top_left = 22
+corner_radius_top_right = 22
+corner_radius_bottom_right = 22
+corner_radius_bottom_left = 22
+shadow_color = Color(0.33, 0.16, 0.45, 0.18)
+shadow_size = 5
+shadow_offset = Vector2(0, 3)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_settings_button_hover"]
+content_margin_left = 18.0
+content_margin_top = 14.0
+content_margin_right = 18.0
+content_margin_bottom = 14.0
+bg_color = Color(0.88, 0.66, 0.98, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.99, 0.94, 1, 1)
+corner_radius_top_left = 22
+corner_radius_top_right = 22
+corner_radius_bottom_right = 22
+corner_radius_bottom_left = 22
+shadow_color = Color(0.46, 0.21, 0.6, 0.28)
+shadow_size = 12
+shadow_offset = Vector2(0, 8)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_privacy_button"]
+content_margin_left = 18.0
+content_margin_top = 14.0
+content_margin_right = 18.0
+content_margin_bottom = 14.0
+bg_color = Color(0.97, 0.53, 0.71, 0.97)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(1, 0.89, 0.94, 0.98)
+corner_radius_top_left = 22
+corner_radius_top_right = 22
+corner_radius_bottom_right = 22
+corner_radius_bottom_left = 22
+shadow_color = Color(0.56, 0.18, 0.34, 0.22)
+shadow_size = 10
+shadow_offset = Vector2(0, 7)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_privacy_button_pressed"]
+content_margin_left = 18.0
+content_margin_top = 16.0
+content_margin_right = 18.0
+content_margin_bottom = 12.0
+bg_color = Color(0.89, 0.46, 0.64, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(1, 0.86, 0.92, 0.96)
+corner_radius_top_left = 22
+corner_radius_top_right = 22
+corner_radius_bottom_right = 22
+corner_radius_bottom_left = 22
+shadow_color = Color(0.46, 0.18, 0.3, 0.18)
+shadow_size = 5
+shadow_offset = Vector2(0, 3)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_privacy_button_hover"]
+content_margin_left = 18.0
+content_margin_top = 14.0
+content_margin_right = 18.0
+content_margin_bottom = 14.0
+bg_color = Color(1, 0.61, 0.77, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(1, 0.94, 0.97, 1)
+corner_radius_top_left = 22
+corner_radius_top_right = 22
+corner_radius_bottom_right = 22
+corner_radius_bottom_left = 22
+shadow_color = Color(0.62, 0.21, 0.37, 0.28)
+shadow_size = 12
+shadow_offset = Vector2(0, 8)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_settings_panel"]
+bg_color = Color(1, 0.976471, 0.989, 0.97)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(1, 0.839216, 0.909804, 0.92)
+corner_radius_top_left = 34
+corner_radius_top_right = 34
+corner_radius_bottom_right = 34
+corner_radius_bottom_left = 34
+shadow_color = Color(0.372549, 0.180392, 0.25098, 0.18)
+shadow_size = 14
+shadow_offset = Vector2(0, 8)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_settings_toggle"]
+content_margin_left = 24.0
+content_margin_top = 16.0
+content_margin_right = 24.0
+content_margin_bottom = 16.0
+bg_color = Color(0.388, 0.862, 0.901, 0.96)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.858824, 1, 1, 0.95)
+corner_radius_top_left = 26
+corner_radius_top_right = 26
+corner_radius_bottom_right = 26
+corner_radius_bottom_left = 26
+shadow_color = Color(0.156863, 0.458824, 0.517647, 0.16)
+shadow_size = 6
+shadow_offset = Vector2(0, 4)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_settings_action"]
+content_margin_left = 24.0
+content_margin_top = 16.0
+content_margin_right = 24.0
+content_margin_bottom = 16.0
+bg_color = Color(0.783, 0.513, 0.913, 0.95)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.974, 0.894, 1, 0.94)
+corner_radius_top_left = 24
+corner_radius_top_right = 24
+corner_radius_bottom_right = 24
+corner_radius_bottom_left = 24
+shadow_color = Color(0.352941, 0.176471, 0.454902, 0.16)
+shadow_size = 6
+shadow_offset = Vector2(0, 4)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_privacy_body"]
+bg_color = Color(1, 0.986, 0.992, 0.92)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 0.882, 0.937, 0.82)
+corner_radius_top_left = 24
+corner_radius_top_right = 24
+corner_radius_bottom_right = 24
+corner_radius_bottom_left = 24
+shadow_color = Color(0.372549, 0.180392, 0.25098, 0.1)
+shadow_size = 4
+shadow_offset = Vector2(0, 2)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_overlay_panel"]
+bg_color = Color(1, 0.976471, 0.972549, 0.94)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 0.85098, 0.913725, 0.8)
+corner_radius_top_left = 28
+corner_radius_top_right = 28
+corner_radius_bottom_right = 28
+corner_radius_bottom_left = 28
+shadow_color = Color(0.290196, 0.172549, 0.164706, 0.14)
+shadow_size = 8
+shadow_offset = Vector2(0, 6)
+
+[node name="MainMenu" type="Control" unique_id=1161831554]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_theme")
+script = ExtResource("1_menu")
+
+[node name="Background" type="ColorRect" parent="." unique_id=127967864]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -5.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.992157, 0.898039, 0.929412, 1)
+
+[node name="fone" type="TextureRect" parent="Background" unique_id=1190846519]
+modulate = Color(1, 1, 1, 0.96)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 5.0
+offset_right = 23.0
+offset_bottom = 163.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("3_iwfq2")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="torte" type="TextureRect" parent="Background/fone" unique_id=1769183645]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.1
+anchor_top = 1.5
+anchor_right = 1.1
+anchor_bottom = 3.0
+offset_left = 46.0
+offset_top = -720.5
+offset_right = -44.0
+offset_bottom = -1368.7109
+grow_horizontal = 2
+expand_mode = 5
+
+[node name="logo" type="TextureRect" parent="Background" unique_id=137961055]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.12
+anchor_top = 0.04
+anchor_right = 0.88
+anchor_bottom = 0.23
+offset_left = 5.16
+offset_top = -17.08
+offset_right = 5.1600037
+offset_bottom = 18.873589
+grow_horizontal = 2
+texture = ExtResource("4_cqjrg")
+expand_mode = 5
+
+[node name="AccentTop" type="ColorRect" parent="." unique_id=1273848126]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.08
+anchor_top = 0.06
+anchor_right = 0.92
+anchor_bottom = 0.065
+mouse_filter = 2
+color = Color(1, 1, 1, 0.18)
+
+[node name="AccentBottom" type="ColorRect" parent="." unique_id=370015092]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.08
+anchor_top = 0.93
+anchor_right = 0.92
+anchor_bottom = 0.935
+mouse_filter = 2
+color = Color(1, 1, 1, 0.16)
+
+[node name="MenuPanel" type="PanelContainer" parent="." unique_id=938652663]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.08
+anchor_top = 0.16
+anchor_right = 0.92
+anchor_bottom = 0.95
+offset_left = -61.559998
+offset_top = 59.68
+offset_right = 83.56
+offset_bottom = 243.1
+theme_override_styles/panel = SubResource("StyleBoxTexture_cqjrg")
+
+[node name="Margin" type="MarginContainer" parent="MenuPanel" unique_id=149512783]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 18
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 18
+
+[node name="Content" type="VBoxContainer" parent="MenuPanel/Margin" unique_id=1262323380]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 10
+
+[node name="SubtitleLabel" type="Label" parent="MenuPanel/Margin/Content" unique_id=197219679]
+visible = false
+layout_mode = 2
+theme_override_colors/font_color = Color(0.478431, 0.262745, 0.329412, 0.9)
+theme_override_font_sizes/font_size = 18
+text = "Unlocked: Level 1/10"
+horizontal_alignment = 1
+
+[node name="HeroSpacer" type="Control" parent="MenuPanel/Margin/Content" unique_id=332190437]
+visible = false
+custom_minimum_size = Vector2(0, 180)
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="MenuButtons" type="VBoxContainer" parent="MenuPanel/Margin/Content" unique_id=1500130990]
+custom_minimum_size = Vector2(340, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/separation = 20
+
+[node name="PlayButton" type="Button" parent="MenuPanel/Margin/Content/MenuButtons" unique_id=2102726668]
+custom_minimum_size = Vector2(340, 92)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_focus_color = Color(1, 1, 1, 1)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0.08, 0.43, 0.5, 0.98)
+theme_override_constants/outline_size = 7
+theme_override_font_sizes/font_size = 36
+theme_override_styles/normal = SubResource("StyleBoxFlat_play_button")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_play_button_pressed")
+theme_override_styles/hover = SubResource("StyleBoxFlat_play_button_hover")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_play_button")
+theme_override_styles/focus = SubResource("StyleBoxFlat_play_button_hover")
+text = "PLAY"
+script = ExtResource("3_fx")
+
+[node name="LevelSelectButton" type="Button" parent="MenuPanel/Margin/Content/MenuButtons" unique_id=1122457800]
+custom_minimum_size = Vector2(250, 74)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_focus_color = Color(1, 1, 1, 1)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0.61, 0.29, 0.04, 0.98)
+theme_override_constants/outline_size = 6
+theme_override_font_sizes/font_size = 34
+theme_override_styles/normal = SubResource("StyleBoxFlat_levels_button")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_levels_button_pressed")
+theme_override_styles/hover = SubResource("StyleBoxFlat_levels_button_hover")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_levels_button")
+theme_override_styles/focus = SubResource("StyleBoxFlat_levels_button_hover")
+text = "LEVELS"
+script = ExtResource("3_fx")
+
+[node name="EndlessModeButton" type="Button" parent="MenuPanel/Margin/Content/MenuButtons" unique_id=189020459]
+visible = false
+custom_minimum_size = Vector2(250, 74)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_focus_color = Color(1, 1, 1, 1)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0.31, 0.2, 0.56, 0.98)
+theme_override_constants/outline_size = 5
+theme_override_font_sizes/font_size = 28
+theme_override_styles/normal = SubResource("StyleBoxFlat_endless_button")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_endless_button_pressed")
+theme_override_styles/hover = SubResource("StyleBoxFlat_endless_button_hover")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_endless_button")
+theme_override_styles/focus = SubResource("StyleBoxFlat_endless_button_hover")
+text = "ENDLESS"
+script = ExtResource("3_fx")
+
+[node name="BottomSpacer" type="Control" parent="MenuPanel/Margin/Content" unique_id=1319002045]
+custom_minimum_size = Vector2(0, 220)
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="UtilityButtons" type="HBoxContainer" parent="MenuPanel/Margin/Content" unique_id=753877738]
+layout_mode = 2
+theme_override_constants/separation = 18
+alignment = 1
+
+[node name="SettingsButton" type="Button" parent="MenuPanel/Margin/Content/UtilityButtons" unique_id=684310406]
+custom_minimum_size = Vector2(170, 58)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_focus_color = Color(1, 1, 1, 1)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0.42, 0.2, 0.53, 0.98)
+theme_override_constants/outline_size = 4
+theme_override_font_sizes/font_size = 18
+theme_override_styles/normal = SubResource("StyleBoxFlat_settings_button")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_settings_button_pressed")
+theme_override_styles/hover = SubResource("StyleBoxFlat_settings_button_hover")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_settings_button")
+theme_override_styles/focus = SubResource("StyleBoxFlat_settings_button_hover")
+text = "Settings"
+script = ExtResource("3_fx")
+
+[node name="StartGameButton" type="Button" parent="MenuPanel/Margin/Content/UtilityButtons" unique_id=1414265239]
+visible = false
+custom_minimum_size = Vector2(0, 54)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_focus_color = Color(1, 1, 1, 1)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0.42, 0.2, 0.53, 0.98)
+theme_override_constants/outline_size = 4
+theme_override_font_sizes/font_size = 18
+theme_override_styles/normal = SubResource("StyleBoxFlat_settings_button")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_settings_button_pressed")
+theme_override_styles/hover = SubResource("StyleBoxFlat_settings_button_hover")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_settings_button")
+theme_override_styles/focus = SubResource("StyleBoxFlat_settings_button_hover")
+text = "Level 1"
+script = ExtResource("3_fx")
+
+[node name="PrivacyPolicyButton" type="Button" parent="MenuPanel/Margin/Content/UtilityButtons" unique_id=1067552185]
+custom_minimum_size = Vector2(220, 58)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_focus_color = Color(1, 1, 1, 1)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0.56, 0.18, 0.35, 0.98)
+theme_override_constants/outline_size = 4
+theme_override_font_sizes/font_size = 18
+theme_override_styles/normal = SubResource("StyleBoxFlat_privacy_button")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_privacy_button_pressed")
+theme_override_styles/hover = SubResource("StyleBoxFlat_privacy_button_hover")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_privacy_button")
+theme_override_styles/focus = SubResource("StyleBoxFlat_privacy_button_hover")
+text = "Privacy"
+script = ExtResource("3_fx")
+
+[node name="QuitButton" type="Button" parent="MenuPanel/Margin/Content/UtilityButtons" unique_id=546638258]
+visible = false
+custom_minimum_size = Vector2(0, 54)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_focus_color = Color(1, 1, 1, 1)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0.56, 0.18, 0.35, 0.98)
+theme_override_constants/outline_size = 4
+theme_override_font_sizes/font_size = 18
+theme_override_styles/normal = SubResource("StyleBoxFlat_privacy_button")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_privacy_button_pressed")
+theme_override_styles/hover = SubResource("StyleBoxFlat_privacy_button_hover")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_privacy_button")
+theme_override_styles/focus = SubResource("StyleBoxFlat_privacy_button_hover")
+text = "Quit"
+script = ExtResource("3_fx")
+
+[node name="UiSoundPlayer" type="AudioStreamPlayer" parent="." unique_id=198507578]
+
+[node name="SettingsOverlay" type="ColorRect" parent="." unique_id=875921299]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+color = Color(0.18, 0.08, 0.14, 0.62)
+
+[node name="SettingsPanel" type="PanelContainer" parent="SettingsOverlay" unique_id=103550163]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.1
+anchor_top = 0.2
+anchor_right = 0.9
+anchor_bottom = 0.68
+theme_override_styles/panel = SubResource("StyleBoxFlat_settings_panel")
+
+[node name="Margin" type="MarginContainer" parent="SettingsOverlay/SettingsPanel" unique_id=457273192]
+layout_mode = 2
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 24
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 24
+
+[node name="Content" type="VBoxContainer" parent="SettingsOverlay/SettingsPanel/Margin" unique_id=389092843]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="TitleLabel" type="Label" parent="SettingsOverlay/SettingsPanel/Margin/Content" unique_id=1298205146]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.533333, 0.239216, 0.380392, 1)
+theme_override_font_sizes/font_size = 34
+text = "Settings"
+horizontal_alignment = 1
+
+[node name="SoundToggle" type="CheckButton" parent="SettingsOverlay/SettingsPanel/Margin/Content" unique_id=777646476]
+custom_minimum_size = Vector2(0, 68)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_focus_color = Color(1, 1, 1, 1)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_pressed_color = Color(1, 1, 1, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_settings_toggle")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_settings_toggle")
+theme_override_styles/hover = SubResource("StyleBoxFlat_settings_toggle")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_settings_toggle")
+theme_override_styles/focus = SubResource("StyleBoxFlat_settings_toggle")
+button_pressed = true
+text = "Sound: ON"
+script = ExtResource("5_check_fx")
+
+[node name="VolumeLabel" type="Label" parent="SettingsOverlay/SettingsPanel/Margin/Content" unique_id=104390141]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.533333, 0.239216, 0.380392, 1)
+theme_override_font_sizes/font_size = 24
+text = "Volume: 75%"
+horizontal_alignment = 1
+
+[node name="VolumeSlider" type="HSlider" parent="SettingsOverlay/SettingsPanel/Margin/Content" unique_id=149359220]
+custom_minimum_size = Vector2(0, 44)
+layout_mode = 2
+value = 75.0
+
+[node name="ResetCakeStylesButton" type="Button" parent="SettingsOverlay/SettingsPanel/Margin/Content" unique_id=126706531]
+visible = false
+custom_minimum_size = Vector2(0, 68)
+layout_mode = 2
+text = "Reset Cake Styles"
+script = ExtResource("3_fx")
+
+[node name="BackButton" type="Button" parent="SettingsOverlay/SettingsPanel/Margin/Content" unique_id=564828380]
+custom_minimum_size = Vector2(0, 68)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_focus_color = Color(1, 1, 1, 1)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_pressed_color = Color(1, 1, 1, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_settings_action")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_settings_action")
+theme_override_styles/hover = SubResource("StyleBoxFlat_settings_action")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_settings_action")
+theme_override_styles/focus = SubResource("StyleBoxFlat_settings_action")
+text = "Back"
+script = ExtResource("3_fx")
+
+[node name="PrivacyOverlay" type="ColorRect" parent="." unique_id=106239368]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+color = Color(0.18, 0.08, 0.14, 0.62)
+
+[node name="PrivacyPanel" type="PanelContainer" parent="PrivacyOverlay" unique_id=2034705450]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.08
+anchor_top = 0.16
+anchor_right = 0.92
+anchor_bottom = 0.82
+offset_left = 0.40000153
+offset_top = -204.40001
+offset_right = 0.4000244
+offset_bottom = 652.2
+theme_override_styles/panel = SubResource("StyleBoxFlat_settings_panel")
+
+[node name="Margin" type="MarginContainer" parent="PrivacyOverlay/PrivacyPanel" unique_id=1435579718]
+layout_mode = 2
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 24
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 24
+
+[node name="Content" type="VBoxContainer" parent="PrivacyOverlay/PrivacyPanel/Margin" unique_id=58625511]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 20
+
+[node name="TitleLabel" type="Label" parent="PrivacyOverlay/PrivacyPanel/Margin/Content" unique_id=656381210]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.533333, 0.239216, 0.380392, 1)
+theme_override_font_sizes/font_size = 34
+text = "Privacy Policy"
+horizontal_alignment = 1
+
+[node name="BodyScroll" type="ScrollContainer" parent="PrivacyOverlay/PrivacyPanel/Margin/Content" unique_id=809912341]
+custom_minimum_size = Vector2(0, 260)
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_privacy_body")
+horizontal_scroll_mode = 0
+
+[node name="BodyLabel" type="Label" parent="PrivacyOverlay/PrivacyPanel/Margin/Content/BodyScroll" unique_id=132252166]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(0.360784, 0.235294, 0.286275, 1)
+theme_override_font_sizes/font_size = 21
+text = "
+  Welcome to Cut Cake!
+  We want Cut Cake to stay simple, fun, and respectful of your privacy.
+
+  1. No Personal Data Collection
+  We do not collect, store, or share your personal information.
+   - We do not collect personally identifiable information (PII).
+   - Your progress, settings, and unlocked content stay on your device.
+   - We do not track IP addresses or use unique device identifiers.
+
+  2. No Ads or Hidden Tracking
+  Cut Cake does not use third-party ads, hidden analytics, or tracking SDKs.
+
+  3. Family-Friendly Experience
+  Because we do not collect personal data, Cut Cake is suitable for players of all ages, including children under 13.
+
+  4. No Unnecessary Permissions
+  The game does not request access to features it does not need. We do not ask for:
+
+    - Camera or microphone
+    - Contacts or messages
+    - Location data
+
+  5. Local Storage Only
+  Saves, preferences, and gameplay progress remain stored locally on your device.
+
+  6. Policy Updates
+  If this policy changes in the future, the core promise stays the same: your data remains under your control.
+
+  Last Updated: March 11, 2026"
+autowrap_mode = 3
+
+[node name="BackButton" type="Button" parent="PrivacyOverlay/PrivacyPanel/Margin/Content" unique_id=2144289343]
+custom_minimum_size = Vector2(0, 68)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_focus_color = Color(1, 1, 1, 1)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_pressed_color = Color(1, 1, 1, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_settings_action")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_settings_action")
+theme_override_styles/hover = SubResource("StyleBoxFlat_settings_action")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_settings_action")
+theme_override_styles/focus = SubResource("StyleBoxFlat_settings_action")
+text = "Back"
+script = ExtResource("3_fx")
+
+[node name="LevelSelectOverlay" type="ColorRect" parent="." unique_id=548528257]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+color = Color(0.02, 0.03, 0.06, 0.82)
+
+[node name="LevelSelectPanel" type="PanelContainer" parent="LevelSelectOverlay" unique_id=391015721]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.06
+anchor_top = 0.16
+anchor_right = 0.94
+anchor_bottom = 0.82
+offset_left = 6.799999
+offset_top = -7.799988
+offset_right = 6.799988
+offset_bottom = -79.599976
+theme_override_styles/panel = SubResource("StyleBoxFlat_overlay_panel")
+
+[node name="Margin" type="MarginContainer" parent="LevelSelectOverlay/LevelSelectPanel" unique_id=1852263695]
+layout_mode = 2
+theme_override_constants/margin_left = 22
+theme_override_constants/margin_top = 22
+theme_override_constants/margin_right = 22
+theme_override_constants/margin_bottom = 22
+
+[node name="Content" type="VBoxContainer" parent="LevelSelectOverlay/LevelSelectPanel/Margin" unique_id=996094244]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="TitleLabel" type="Label" parent="LevelSelectOverlay/LevelSelectPanel/Margin/Content" unique_id=1654418304]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 30
+text = "Select Level"
+horizontal_alignment = 1
+
+[node name="LevelGridScroll" type="ScrollContainer" parent="LevelSelectOverlay/LevelSelectPanel/Margin/Content" unique_id=170598188]
+custom_minimum_size = Vector2(0, 260)
+layout_mode = 2
+size_flags_vertical = 3
+horizontal_scroll_mode = 0
+
+[node name="LevelGrid" type="GridContainer" parent="LevelSelectOverlay/LevelSelectPanel/Margin/Content/LevelGridScroll" unique_id=170598189]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/h_separation = 14
+theme_override_constants/v_separation = 14
+columns = 2
+
+[node name="BackButton" type="Button" parent="LevelSelectOverlay/LevelSelectPanel/Margin/Content" unique_id=1307144045]
+custom_minimum_size = Vector2(0, 68)
+layout_mode = 2
+text = "Back"
+script = ExtResource("3_fx")
+

@@ -1,0 +1,37 @@
+[gd_resource type="Resource" script_class="PrototypeLevelCatalog" format=3 uid="uid://bam8dh201gad2"]
+
+[ext_resource type="Script" uid="uid://dou7qxgv7h7do" path="res://PrototypeLevelCatalog.gd" id="1_catalog"]
+
+[sub_resource type="Resource" id="Level_01"]
+
+[sub_resource type="Resource" id="Level_02"]
+
+[sub_resource type="Resource" id="Level_03"]
+
+[sub_resource type="Resource" id="Level_04"]
+
+[sub_resource type="Resource" id="Level_05"]
+
+[sub_resource type="Resource" id="Level_06"]
+
+[sub_resource type="Resource" id="Level_07"]
+
+[sub_resource type="Resource" id="Level_08"]
+
+[sub_resource type="Resource" id="Level_09"]
+
+[sub_resource type="Resource" id="Level_10"]
+
+[sub_resource type="Resource" id="Level_11"]
+
+[sub_resource type="Resource" id="Level_12"]
+
+[sub_resource type="Resource" id="Level_13"]
+
+[sub_resource type="Resource" id="Level_14"]
+
+[sub_resource type="Resource" id="Level_15"]
+
+[resource]
+script = ExtResource("1_catalog")
+levels = Array[Resource]([SubResource("Level_01"), SubResource("Level_02"), SubResource("Level_03"), SubResource("Level_04"), SubResource("Level_05"), SubResource("Level_06"), SubResource("Level_07"), SubResource("Level_08"), SubResource("Level_09"), SubResource("Level_10"), SubResource("Level_11"), SubResource("Level_12"), SubResource("Level_13"), SubResource("Level_14"), SubResource("Level_15")])

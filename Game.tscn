@@ -1,0 +1,324 @@
+[gd_scene format=3 uid="uid://cuw5ofjelrlc0"]
+
+[ext_resource type="PackedScene" uid="uid://c7kasjbtbhve3" path="res://Block.tscn" id="1_block"]
+[ext_resource type="Script" uid="uid://2b1iyji1xbbe" path="res://GameController.gd" id="2_game"]
+[ext_resource type="Texture2D" uid="uid://d1sp7hfjemaoc" path="res://frisrblock.png" id="3_frisr"]
+[ext_resource type="Texture2D" uid="uid://bib4jsnr713ec" path="res://secondblock.png" id="4_second"]
+[ext_resource type="Texture2D" uid="uid://blexl2craqrhq" path="res://thirdblock.png" id="5_third"]
+[ext_resource type="Texture2D" uid="uid://birbw7ueln2id" path="res://fourblock.png" id="6_four"]
+[ext_resource type="Theme" uid="uid://33en3am6odaf" path="res://GameplayButtonTheme.tres" id="7_gameplay_theme"]
+[ext_resource type="Script" uid="uid://cb2f5ysorh44p" path="res://MenuButtonFx.gd" id="8_button_fx"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_top_panel"]
+bg_color = Color(1, 1, 1, 0.9)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+shadow_color = Color(0.427451, 0.239216, 0.286275, 0.12)
+shadow_size = 6
+shadow_offset = Vector2(0, 4)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_status_panel"]
+bg_color = Color(1, 1, 1, 0.9)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+shadow_color = Color(0.427451, 0.239216, 0.286275, 0.1)
+shadow_size = 5
+shadow_offset = Vector2(0, 4)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_unlock_popup"]
+bg_color = Color(1, 0.980392, 0.929412, 0.95)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 0.776471, 0.670588, 0.7)
+corner_radius_top_left = 24
+corner_radius_top_right = 24
+corner_radius_bottom_right = 24
+corner_radius_bottom_left = 24
+shadow_color = Color(0.427451, 0.239216, 0.286275, 0.18)
+shadow_size = 8
+shadow_offset = Vector2(0, 6)
+
+[node name="Game" type="Node2D" unique_id=569952641]
+script = ExtResource("2_game")
+block_scene = ExtResource("1_block")
+block_texture1 = ExtResource("3_frisr")
+block_texture2 = ExtResource("4_second")
+block_texture3 = ExtResource("5_third")
+block_texture4 = ExtResource("6_four")
+block_height_step = 60.0
+
+[node name="BackdropTop" type="ColorRect" parent="." unique_id=1458517080]
+offset_left = -1771.0
+offset_top = -800.0
+offset_right = 2226.0
+offset_bottom = 2011.0
+mouse_filter = 2
+color = Color(1, 0.839216, 0.878431, 1)
+
+[node name="BackdropBottom" type="ColorRect" parent="." unique_id=1181683688]
+offset_left = -500.0
+offset_top = -40.0
+offset_right = 500.0
+offset_bottom = 900.0
+color = Color(1, 0.945098, 0.960784, 1)
+
+[node name="CloudLeft" type="Polygon2D" parent="." unique_id=537640194]
+position = Vector2(-210, -120)
+color = Color(1, 1, 1, 0.38)
+polygon = PackedVector2Array(-110, 0, -70, -35, -10, -28, 25, -55, 90, -28, 125, 0, 90, 25, -90, 28)
+
+[node name="CloudRight" type="Polygon2D" parent="." unique_id=131922390]
+position = Vector2(215, -190)
+color = Color(1, 1, 1, 0.34)
+polygon = PackedVector2Array(-120, 0, -70, -32, -15, -22, 15, -48, 95, -20, 130, 0, 92, 23, -96, 26)
+
+[node name="SprinkleA" type="Polygon2D" parent="." unique_id=563864060]
+position = Vector2(-260, 30)
+rotation = 0.28
+color = Color(1, 0.533333, 0.647059, 0.75)
+polygon = PackedVector2Array(-14, -4, 14, -4, 14, 4, -14, 4)
+
+[node name="SprinkleB" type="Polygon2D" parent="." unique_id=1429938051]
+position = Vector2(210, 70)
+rotation = -0.45
+color = Color(1, 0.823529, 0.4, 0.72)
+polygon = PackedVector2Array(-12, -4, 12, -4, 12, 4, -12, 4)
+
+[node name="SprinkleC" type="Polygon2D" parent="." unique_id=1021971667]
+position = Vector2(120, -40)
+rotation = 0.7
+color = Color(0.560784, 0.890196, 0.858824, 0.72)
+polygon = PackedVector2Array(-12, -4, 12, -4, 12, 4, -12, 4)
+
+[node name="TowerShadow" type="Sprite2D" parent="." unique_id=415302151]
+visible = false
+modulate = Color(0.290196, 0.164706, 0.215686, 0.15)
+position = Vector2(0, 392)
+scale = Vector2(1.35, 0.34)
+
+[node name="CakePlateShadow" type="Sprite2D" parent="." unique_id=303151118]
+modulate = Color(0.290196, 0.164706, 0.215686, 0.2)
+position = Vector2(0, 396)
+scale = Vector2(1.45, 0.3)
+
+[node name="CakePlate" type="Sprite2D" parent="." unique_id=1084115352]
+position = Vector2(0, 372)
+scale = Vector2(1.2, 1)
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1487244932]
+position = Vector2(0, 230)
+zoom = Vector2(0.95, 0.95)
+position_smoothing_enabled = true
+position_smoothing_speed = 6.0
+
+[node name="BasePlatform" parent="." unique_id=1212258681 instance=ExtResource("1_block")]
+position = Vector2(0, 180)
+scale = Vector2(1, 1.3200012)
+
+[node name="PlacedBlocksRoot" type="Node2D" parent="." unique_id=244592526]
+scale = Vector2(1, 0.99079406)
+
+[node name="CurrentBlockSpawn" type="Marker2D" parent="." unique_id=2141984589]
+position = Vector2(0, 120)
+
+[node name="SprinkleParticles" type="CPUParticles2D" parent="." unique_id=2009541931]
+emitting = false
+amount = 18
+lifetime = 0.7
+one_shot = true
+explosiveness = 1.0
+
+[node name="PlaceSoundPlayer" type="AudioStreamPlayer" parent="." unique_id=1716273582]
+
+[node name="ResultSoundPlayer" type="AudioStreamPlayer" parent="." unique_id=1029933520]
+
+[node name="UI" type="CanvasLayer" parent="." unique_id=1572191669]
+
+[node name="TopPanel" type="PanelContainer" parent="UI" unique_id=1776602418]
+anchors_preset = -1
+anchor_left = 0.04
+anchor_top = 0.03
+anchor_right = 0.96
+anchor_bottom = 0.16
+mouse_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxFlat_top_panel")
+
+[node name="Margin" type="MarginContainer" parent="UI/TopPanel" unique_id=525998182]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 18
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 18
+theme_override_constants/margin_bottom = 16
+
+[node name="TopRow" type="HBoxContainer" parent="UI/TopPanel/Margin" unique_id=456946131]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 12
+
+[node name="InfoBox" type="VBoxContainer" parent="UI/TopPanel/Margin/TopRow" unique_id=1306651912]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+theme_override_constants/separation = 6
+
+[node name="LevelLabel" type="Label" parent="UI/TopPanel/Margin/TopRow/InfoBox" unique_id=1461380991]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.227451, 0.180392, 0.180392, 1)
+theme_override_font_sizes/font_size = 24
+text = "Level 1"
+
+[node name="ProgressLabel" type="Label" parent="UI/TopPanel/Margin/TopRow/InfoBox" unique_id=227103799]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.227451, 0.180392, 0.180392, 1)
+theme_override_font_sizes/font_size = 20
+text = "Blocks 0/8"
+
+[node name="BackToMenuButton" type="Button" parent="UI/TopPanel/Margin/TopRow" unique_id=1052756395]
+custom_minimum_size = Vector2(170, 56)
+layout_mode = 2
+theme = ExtResource("7_gameplay_theme")
+theme_override_font_sizes/font_size = 20
+text = "Back to Menu"
+script = ExtResource("8_button_fx")
+
+[node name="StatusPanel" type="PanelContainer" parent="UI" unique_id=1545569966]
+self_modulate = Color(1, 1, 1, 0)
+anchors_preset = -1
+anchor_left = 0.08
+anchor_top = 0.18
+anchor_right = 0.92
+anchor_bottom = 0.26
+offset_left = -3.5999985
+offset_top = -0.40000916
+offset_right = -3.5999756
+offset_bottom = -28.799988
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_status_panel")
+
+[node name="StatusLabel" type="Label" parent="UI/StatusPanel" unique_id=1435358262]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.227451, 0.180392, 0.180392, 1)
+theme_override_font_sizes/font_size = 22
+text = "Tap to place"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PerfectLabel" type="Label" parent="UI" unique_id=2099473077]
+visible = false
+offset_left = 250.0
+offset_top = 238.0
+offset_right = 470.0
+offset_bottom = 298.0
+scale = Vector2(1e-05, 1e-05)
+theme_override_colors/font_color = Color(1, 0.819608, 0.4, 1)
+theme_override_font_sizes/font_size = 52
+text = "PERFECT!"
+horizontal_alignment = 1
+
+[node name="LevelCompleteLabel" type="Label" parent="UI" unique_id=201437700]
+visible = false
+offset_left = 180.0
+offset_top = 290.0
+offset_right = 540.0
+offset_bottom = 360.0
+scale = Vector2(1e-05, 1e-05)
+theme_override_colors/font_color = Color(1, 0.819608, 0.4, 1)
+theme_override_font_sizes/font_size = 62
+text = "LEVEL COMPLETE!"
+horizontal_alignment = 1
+
+[node name="UnlockPopup" type="Control" parent="UI" unique_id=657129117]
+visible = false
+layout_mode = 3
+anchor_left = 0.5
+anchor_top = 0.52
+anchor_right = 0.5
+anchor_bottom = 0.52
+offset_left = -160.0
+offset_top = -92.0
+offset_right = 160.0
+offset_bottom = 92.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Panel" type="PanelContainer" parent="UI/UnlockPopup" unique_id=1087045756]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_unlock_popup")
+
+[node name="Margin" type="MarginContainer" parent="UI/UnlockPopup/Panel" unique_id=1092302079]
+layout_mode = 2
+theme_override_constants/margin_left = 18
+theme_override_constants/margin_top = 18
+theme_override_constants/margin_right = 18
+theme_override_constants/margin_bottom = 18
+
+[node name="Content" type="VBoxContainer" parent="UI/UnlockPopup/Panel/Margin" unique_id=244507190]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="UnlockPreview" type="TextureRect" parent="UI/UnlockPopup/Panel/Margin/Content" unique_id=430003853]
+custom_minimum_size = Vector2(0, 64)
+layout_mode = 2
+expand_mode = 1
+stretch_mode = 5
+
+[node name="UnlockLabel" type="Label" parent="UI/UnlockPopup/Panel/Margin/Content" unique_id=1477217974]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.290196, 0.172549, 0.164706, 1)
+theme_override_font_sizes/font_size = 22
+text = "New Cake Style Unlocked!"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="TapHintLabel" type="Label" parent="UI" unique_id=121422037]
+anchors_preset = -1
+anchor_left = 0.1
+anchor_top = 0.78
+anchor_right = 0.9
+anchor_bottom = 0.83
+theme_override_colors/font_color = Color(0.227451, 0.180392, 0.180392, 1)
+theme_override_font_sizes/font_size = 20
+text = "Tap or click to stack"
+horizontal_alignment = 1
+
+[node name="ActionButtons" type="HBoxContainer" parent="UI" unique_id=1413023270]
+anchors_preset = -1
+anchor_left = 0.08
+anchor_top = 0.86
+anchor_right = 0.92
+anchor_bottom = 0.94
+offset_left = -5.5999985
+offset_top = -723.80005
+offset_right = -5.5999756
+offset_bottom = -723.80005
+theme_override_constants/separation = 16
+alignment = 1
+
+[node name="RestartButton" type="Button" parent="UI/ActionButtons" unique_id=1861020534]
+custom_minimum_size = Vector2(220, 64)
+layout_mode = 2
+theme = ExtResource("7_gameplay_theme")
+theme_override_font_sizes/font_size = 22
+text = "Restart Level"
+script = ExtResource("8_button_fx")
+
+[node name="NextLevelButton" type="Button" parent="UI/ActionButtons" unique_id=1047289421]
+custom_minimum_size = Vector2(220, 64)
+layout_mode = 2
+theme = ExtResource("7_gameplay_theme")
+theme_override_font_sizes/font_size = 22
+text = "Next Level"
+script = ExtResource("8_button_fx")

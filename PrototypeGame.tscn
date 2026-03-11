@@ -1,0 +1,786 @@
+[gd_scene format=3 uid="uid://6vo3188m87ov"]
+
+[ext_resource type="Script" uid="uid://dmmg7g2ppp02b" path="res://GameManager.gd" id="1"]
+[ext_resource type="Script" uid="uid://bgyoibqya1n3h" path="res://CakeSpawner.gd" id="2"]
+[ext_resource type="Script" uid="uid://cuidofkt142e0" path="res://KnifeController.gd" id="3"]
+[ext_resource type="Texture2D" uid="uid://cdp0w1uq14dq0" path="res://knife.png" id="3_knife"]
+[ext_resource type="Texture2D" uid="uid://cx2ygwj10w005" path="res://table.png" id="3_qiutb"]
+[ext_resource type="PackedScene" uid="uid://dg0fudjt0xqvg" path="res://PrototypeCake.tscn" id="4"]
+[ext_resource type="PackedScene" path="res://CakePiece.tscn" id="5"]
+[ext_resource type="Resource" uid="uid://bam8dh201gad2" path="res://PrototypeLevels.tres" id="6"]
+[ext_resource type="Texture2D" uid="uid://ijosm2163u1w" path="res://cake_icon.png" id="9_7rt7g"]
+[ext_resource type="Texture2D" uid="uid://da2g2ldymggrr" path="res://back.png" id="10_kru3w"]
+[ext_resource type="Texture2D" uid="uid://b7p0pycvtp7yo" path="res://backward-button-white-icon.png" id="11_pf4o8"]
+
+[sub_resource type="Shader" id="1"]
+code = "shader_type canvas_item;
+
+uniform vec4 top_color : source_color = vec4(1.0, 0.97, 0.91, 1.0);
+uniform vec4 mid_color : source_color = vec4(1.0, 0.86, 0.90, 1.0);
+uniform vec4 bottom_color : source_color = vec4(0.98, 0.76, 0.82, 1.0);
+
+void fragment() {
+	float y = UV.y;
+	vec4 upper = mix(top_color, mid_color, smoothstep(0.0, 0.58, y));
+	vec4 lower = mix(mid_color, bottom_color, smoothstep(0.42, 1.0, y));
+	COLOR = mix(upper, lower, smoothstep(0.35, 1.0, y));
+}
+"
+
+[sub_resource type="ShaderMaterial" id="2"]
+shader = SubResource("1")
+shader_parameter/top_color = Color(1, 0.97, 0.91, 1)
+shader_parameter/mid_color = Color(1, 0.86, 0.9, 1)
+shader_parameter/bottom_color = Color(0.98, 0.76, 0.82, 1)
+
+[sub_resource type="StyleBoxEmpty" id="14"]
+
+[sub_resource type="StyleBoxFlat" id="10"]
+bg_color = Color(0.49, 0.24, 0.19, 0.98)
+border_width_left = 6
+border_width_top = 6
+border_width_right = 6
+border_width_bottom = 6
+border_color = Color(1, 0.82, 0.37, 0.95)
+corner_radius_top_left = 24
+corner_radius_top_right = 24
+corner_radius_bottom_right = 24
+corner_radius_bottom_left = 24
+shadow_color = Color(1, 0.84, 0.44, 0.42)
+shadow_size = 8
+
+[sub_resource type="StyleBoxFlat" id="11"]
+bg_color = Color(1, 1, 1, 0.68)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(1, 1, 1, 0.72)
+corner_radius_top_left = 26
+corner_radius_top_right = 26
+corner_radius_bottom_right = 26
+corner_radius_bottom_left = 26
+shadow_color = Color(0.8, 0.62, 0.68, 0.18)
+shadow_size = 4
+shadow_offset = Vector2(0, 3)
+
+[sub_resource type="StyleBoxFlat" id="StatsBadgeCake"]
+bg_color = Color(0.96, 0.78, 0.86, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(1, 0.9, 0.95, 0.94)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+shadow_color = Color(0.86, 0.62, 0.73, 0.26)
+shadow_size = 8
+shadow_offset = Vector2(0, 4)
+
+[sub_resource type="StyleBoxFlat" id="12"]
+bg_color = Color(0.98, 0.43, 0.49, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(1, 0.8, 0.84, 0.94)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+shadow_color = Color(0.8, 0.29, 0.34, 0.28)
+shadow_size = 8
+shadow_offset = Vector2(0, 4)
+
+[sub_resource type="StyleBoxFlat" id="13"]
+bg_color = Color(0.98, 0.83, 0.29, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(1, 0.95, 0.78, 0.94)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+shadow_color = Color(0.84, 0.62, 0.18, 0.28)
+shadow_size = 8
+shadow_offset = Vector2(0, 4)
+
+[sub_resource type="StyleBoxFlat" id="StatsBadgeMenu"]
+bg_color = Color(0.84, 0.61, 0.93, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.95, 0.85, 1, 0.94)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+shadow_color = Color(0.71, 0.48, 0.84, 0.28)
+shadow_size = 8
+shadow_offset = Vector2(0, 4)
+
+[sub_resource type="StyleBoxFlat" id="9"]
+bg_color = Color(1, 1, 1, 0.72)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.93, 0.75, 0.79, 0.95)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+shadow_color = Color(0.45, 0.29, 0.31, 0.1)
+shadow_size = 3
+shadow_offset = Vector2(0, 2)
+
+[sub_resource type="StyleBoxFlat" id="4"]
+bg_color = Color(0.09, 0.08, 0.12, 0.88)
+
+[sub_resource type="StyleBoxFlat" id="5"]
+bg_color = Color(0.14, 0.14, 0.18, 0.97)
+corner_radius_top_left = 24
+corner_radius_top_right = 24
+corner_radius_bottom_right = 24
+corner_radius_bottom_left = 24
+
+[sub_resource type="StyleBoxFlat" id="StarBadgeFilled"]
+bg_color = Color(1, 0.8, 0.22, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(1, 0.95, 0.7, 1)
+corner_radius_top_left = 32
+corner_radius_top_right = 32
+corner_radius_bottom_right = 32
+corner_radius_bottom_left = 32
+shadow_color = Color(0.78, 0.45, 0.08, 0.32)
+shadow_size = 8
+shadow_offset = Vector2(0, 4)
+
+[sub_resource type="StyleBoxFlat" id="UnlockRewardCard"]
+bg_color = Color(1, 0.96, 0.72, 0.08)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 0.86, 0.42, 0.26)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="StyleBoxFlat" id="UnlockPreviewFrame"]
+bg_color = Color(1, 0.93, 0.82, 0.98)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(1, 0.84, 0.5, 0.92)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+shadow_color = Color(0.78, 0.54, 0.19, 0.18)
+shadow_size = 6
+shadow_offset = Vector2(0, 3)
+
+[sub_resource type="StyleBoxFlat" id="UnlockNewRibbon"]
+bg_color = Color(1, 0.49, 0.42, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 0.84, 0.8, 0.92)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+shadow_color = Color(0.78, 0.27, 0.24, 0.2)
+shadow_size = 4
+shadow_offset = Vector2(0, 2)
+
+[node name="Game" type="Node2D" unique_id=2034636748]
+script = ExtResource("1")
+level_catalog = ExtResource("6")
+
+[node name="Background" type="ColorRect" parent="." unique_id=326077523]
+material = SubResource("2")
+offset_left = -400.0
+offset_top = -400.0
+offset_right = 1200.0
+offset_bottom = 1600.0
+
+[node name="CloudA" type="Polygon2D" parent="." unique_id=238057361]
+position = Vector2(154, 145)
+color = Color(1, 1, 1, 0.28)
+polygon = PackedVector2Array(-96, 8, -68, -18, -12, -22, 14, -40, 74, -18, 104, 8, 70, 24, -84, 26)
+
+[node name="CloudB" type="Polygon2D" parent="." unique_id=1233333950]
+position = Vector2(536, 204)
+color = Color(1, 1, 1, 0.22)
+polygon = PackedVector2Array(-84, 6, -58, -14, -8, -18, 22, -34, 68, -14, 92, 6, 66, 20, -70, 22)
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1355500011]
+position = Vector2(214, 344)
+zoom = Vector2(0.7, 0.7)
+
+[node name="Conveyor" type="Node2D" parent="." unique_id=366003177]
+
+[node name="Belt" type="ColorRect" parent="Conveyor" unique_id=2011089299]
+visible = false
+offset_left = -420.0
+offset_top = 388.0
+offset_right = 1180.0
+offset_bottom = 520.0
+color = Color(0.22, 0.25, 0.29, 1)
+
+[node name="BeltTopEdge" type="ColorRect" parent="Conveyor" unique_id=2052049726]
+offset_left = -420.0
+offset_top = 388.0
+offset_right = 1180.0
+offset_bottom = 404.0
+color = Color(0.38, 0.44, 0.5, 0.65)
+
+[node name="BeltBottomEdge" type="ColorRect" parent="Conveyor" unique_id=1314674048]
+offset_left = -420.0
+offset_top = 500.0
+offset_right = 1180.0
+offset_bottom = 520.0
+color = Color(0.11, 0.12, 0.14, 0.45)
+
+[node name="BeltStripeA" type="ColorRect" parent="Conveyor" unique_id=1622937542]
+offset_top = 408.0
+offset_right = 112.0
+offset_bottom = 496.0
+color = Color(0.48, 0.55, 0.61, 0.34)
+
+[node name="BeltStripeB" type="ColorRect" parent="Conveyor" unique_id=402942467]
+offset_top = 408.0
+offset_right = 112.0
+offset_bottom = 496.0
+color = Color(0.48, 0.55, 0.61, 0.34)
+
+[node name="BeltStripeC" type="ColorRect" parent="Conveyor" unique_id=250198195]
+offset_top = 408.0
+offset_right = 112.0
+offset_bottom = 496.0
+color = Color(0.48, 0.55, 0.61, 0.34)
+
+[node name="BeltStripeD" type="ColorRect" parent="Conveyor" unique_id=1311078392]
+offset_top = 408.0
+offset_right = 112.0
+offset_bottom = 496.0
+color = Color(0.48, 0.55, 0.61, 0.34)
+
+[node name="BeltStripeE" type="ColorRect" parent="Conveyor" unique_id=188705359]
+offset_left = 16.0
+offset_top = 401.0
+offset_right = 102.0
+offset_bottom = 473.0
+color = Color(0.48, 0.55, 0.61, 0.34)
+
+[node name="TextureRect" type="TextureRect" parent="Conveyor" unique_id=85585368]
+offset_left = -400.0
+offset_top = -37.0
+offset_right = 1013.0
+offset_bottom = 1140.0
+scale = Vector2(0.99937946, 0.993257)
+texture = ExtResource("3_qiutb")
+expand_mode = 5
+
+[node name="CounterFront" type="ColorRect" parent="." unique_id=1478451273]
+visible = false
+offset_left = -120.0
+offset_top = 520.0
+offset_right = 840.0
+offset_bottom = 1280.0
+color = Color(0.89, 0.76, 0.68, 1)
+
+[node name="CounterTop" type="ColorRect" parent="." unique_id=1499933756]
+visible = false
+offset_left = -80.0
+offset_top = 498.0
+offset_right = 800.0
+offset_bottom = 530.0
+color = Color(0.98, 0.93, 0.88, 1)
+
+[node name="Spawner" type="Node2D" parent="." unique_id=2143263887]
+script = ExtResource("2")
+cake_scene = ExtResource("4")
+conveyor_speed = 240.0
+
+[node name="Knife" type="Node2D" parent="." unique_id=1222047270]
+position = Vector2(232.99998, 228)
+scale = Vector2(0.7, 0.7)
+script = ExtResource("3")
+drop_distance = 290.0
+cake_piece_scene = ExtResource("5")
+
+[node name="KnifeSprite" type="Sprite2D" parent="Knife" unique_id=1959743985]
+position = Vector2(-1.4285707, -47.142876)
+scale = Vector2(1.0452962, 1.0461192)
+texture = ExtResource("3_knife")
+
+[node name="CutMarker" type="ColorRect" parent="." unique_id=1363254272]
+visible = false
+offset_left = 227.0
+offset_top = 326.0
+offset_right = 239.0
+offset_bottom = 462.0
+color = Color(1, 1, 1, 0.16)
+
+[node name="SpawnTimer" type="Timer" parent="." unique_id=370480669]
+wait_time = 1.6
+
+[node name="UI" type="CanvasLayer" parent="." unique_id=793392997]
+
+[node name="HudPanel" type="PanelContainer" parent="UI" unique_id=1717814981]
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 14.0
+offset_top = 10.0
+offset_right = -14.0
+offset_bottom = 82.0
+grow_horizontal = 2
+theme_override_styles/panel = SubResource("14")
+
+[node name="Margin" type="MarginContainer" parent="UI/HudPanel" unique_id=1972217159]
+layout_mode = 2
+theme_override_constants/margin_left = 0
+theme_override_constants/margin_top = 0
+theme_override_constants/margin_right = 0
+theme_override_constants/margin_bottom = 0
+
+[node name="HudRow" type="HBoxContainer" parent="UI/HudPanel/Margin" unique_id=971018933]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="LevelBadge" type="PanelContainer" parent="UI/HudPanel/Margin/HudRow" unique_id=804145592]
+custom_minimum_size = Vector2(198, 72)
+layout_mode = 2
+theme_override_styles/panel = SubResource("10")
+
+[node name="LevelValue" type="Label" parent="UI/HudPanel/Margin/HudRow/LevelBadge" unique_id=804145593]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.98, 0.93, 1)
+theme_override_colors/font_outline_color = Color(0.37, 0.17, 0.15, 0.7)
+theme_override_constants/outline_size = 5
+theme_override_font_sizes/font_size = 28
+text = "LEVEL 1"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="StatsBar" type="PanelContainer" parent="UI/HudPanel/Margin/HudRow" unique_id=281581280]
+custom_minimum_size = Vector2(456, 72)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("11")
+
+[node name="StatsMargin" type="MarginContainer" parent="UI/HudPanel/Margin/HudRow/StatsBar" unique_id=281581281]
+layout_mode = 2
+theme_override_constants/margin_left = 18
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 18
+theme_override_constants/margin_bottom = 10
+
+[node name="StatsRow" type="HBoxContainer" parent="UI/HudPanel/Margin/HudRow/StatsBar/StatsMargin" unique_id=281581282]
+layout_mode = 2
+theme_override_constants/separation = 16
+alignment = 1
+
+[node name="CakeIconBg" type="PanelContainer" parent="UI/HudPanel/Margin/HudRow/StatsBar/StatsMargin/StatsRow" unique_id=281581296]
+custom_minimum_size = Vector2(44, 44)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StatsBadgeCake")
+
+[node name="CakeIcon" type="TextureRect" parent="UI/HudPanel/Margin/HudRow/StatsBar/StatsMargin/StatsRow/CakeIconBg" unique_id=281581283]
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 2
+texture = ExtResource("9_7rt7g")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="CakesValue" type="Label" parent="UI/HudPanel/Margin/HudRow/StatsBar/StatsMargin/StatsRow" unique_id=281581284]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.43, 0.3, 0.34, 1)
+theme_override_font_sizes/font_size = 28
+text = "0/0"
+vertical_alignment = 1
+
+[node name="DividerA" type="ColorRect" parent="UI/HudPanel/Margin/HudRow/StatsBar/StatsMargin/StatsRow" unique_id=281581285]
+custom_minimum_size = Vector2(2, 38)
+layout_mode = 2
+color = Color(0.91, 0.82, 0.85, 0.8)
+
+[node name="MissIconBg" type="PanelContainer" parent="UI/HudPanel/Margin/HudRow/StatsBar/StatsMargin/StatsRow" unique_id=281581286]
+custom_minimum_size = Vector2(44, 44)
+layout_mode = 2
+theme_override_styles/panel = SubResource("12")
+
+[node name="MissIcon" type="Label" parent="UI/HudPanel/Margin/HudRow/StatsBar/StatsMargin/StatsRow/MissIconBg" unique_id=281581287]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.98, 0.98, 1)
+theme_override_colors/font_outline_color = Color(0.82, 0.31, 0.38, 0.75)
+theme_override_constants/outline_size = 3
+theme_override_font_sizes/font_size = 28
+text = "X"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MissesValue" type="Label" parent="UI/HudPanel/Margin/HudRow/StatsBar/StatsMargin/StatsRow" unique_id=1537391414]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.43, 0.3, 0.34, 1)
+theme_override_font_sizes/font_size = 28
+text = "0/0"
+vertical_alignment = 1
+
+[node name="DividerB" type="ColorRect" parent="UI/HudPanel/Margin/HudRow/StatsBar/StatsMargin/StatsRow" unique_id=281581288]
+custom_minimum_size = Vector2(2, 38)
+layout_mode = 2
+color = Color(0.91, 0.82, 0.85, 0.8)
+
+[node name="SpeedIconBg" type="PanelContainer" parent="UI/HudPanel/Margin/HudRow/StatsBar/StatsMargin/StatsRow" unique_id=281581289]
+custom_minimum_size = Vector2(44, 44)
+layout_mode = 2
+theme_override_styles/panel = SubResource("13")
+
+[node name="SpeedIcon" type="Label" parent="UI/HudPanel/Margin/HudRow/StatsBar/StatsMargin/StatsRow/SpeedIconBg" unique_id=281581290]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0.76, 0.54, 0.12, 0.75)
+theme_override_constants/outline_size = 3
+theme_override_font_sizes/font_size = 14
+text = "SPD"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SpeedValue" type="Label" parent="UI/HudPanel/Margin/HudRow/StatsBar/StatsMargin/StatsRow" unique_id=281581291]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.43, 0.3, 0.34, 1)
+theme_override_font_sizes/font_size = 28
+text = "180"
+vertical_alignment = 1
+
+[node name="MenuButton" type="TextureButton" parent="UI/HudPanel/Margin/HudRow/StatsBar/StatsMargin/StatsRow" unique_id=281581292]
+custom_minimum_size = Vector2(44, 44)
+layout_mode = 2
+tooltip_text = "Main Menu"
+mouse_filter = 1
+
+[node name="Chevron" type="Control" parent="UI/HudPanel/Margin/HudRow/StatsBar/StatsMargin/StatsRow/MenuButton" unique_id=281581293]
+visible = false
+anchors_preset = 0
+offset_left = 2.5
+offset_top = -6.0
+offset_right = 31.5
+offset_bottom = 43.0
+mouse_filter = 2
+
+[node name="TopStroke" type="ColorRect" parent="UI/HudPanel/Margin/HudRow/StatsBar/StatsMargin/StatsRow/MenuButton/Chevron" unique_id=281581294]
+visible = false
+layout_mode = 0
+offset_left = 5.0
+offset_top = 3.0
+offset_right = 9.0
+offset_bottom = 15.0
+rotation = 0.7853982
+mouse_filter = 2
+color = Color(0.56, 0.4, 0.46, 0.96)
+
+[node name="BottomStroke" type="ColorRect" parent="UI/HudPanel/Margin/HudRow/StatsBar/StatsMargin/StatsRow/MenuButton/Chevron" unique_id=281581295]
+visible = false
+layout_mode = 0
+offset_left = 5.0
+offset_top = 9.0
+offset_right = 9.0
+offset_bottom = 21.0
+rotation = -0.7853982
+mouse_filter = 2
+color = Color(0.56, 0.4, 0.46, 0.96)
+
+[node name="TextureRect" type="TextureRect" parent="UI/HudPanel/Margin/HudRow/StatsBar/StatsMargin/StatsRow/MenuButton/Chevron" unique_id=948157324]
+visible = false
+layout_mode = 0
+offset_left = -7.0
+offset_top = 5.0
+offset_right = 35.0
+offset_bottom = 46.0
+texture = ExtResource("10_kru3w")
+expand_mode = 1
+
+[node name="MenuBadge" type="PanelContainer" parent="UI/HudPanel/Margin/HudRow/StatsBar/StatsMargin/StatsRow/MenuButton" unique_id=281581297]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 12.5
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StatsBadgeMenu")
+
+[node name="MenuIcon" type="TextureRect" parent="UI/HudPanel/Margin/HudRow/StatsBar/StatsMargin/StatsRow/MenuButton/MenuBadge" unique_id=281581298]
+layout_mode = 2
+mouse_filter = 2
+texture = ExtResource("11_pf4o8")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="SpeedIcon" type="Label" parent="UI/HudPanel/Margin/HudRow/StatsBar/StatsMargin/StatsRow/MenuButton/MenuBadge" unique_id=707299289]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0.76, 0.54, 0.12, 0.75)
+theme_override_constants/outline_size = 3
+theme_override_font_sizes/font_size = 14
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Hint" type="Label" parent="UI" unique_id=1561688049]
+anchors_preset = -1
+anchor_left = 0.04
+anchor_right = 0.96
+offset_left = -27.279999
+offset_top = 182.0
+offset_right = 45.28
+offset_bottom = 222.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0.5, 0.38, 0.41, 1)
+theme_override_font_sizes/font_size = 18
+text = "Tap when the green center crosses under the knife."
+horizontal_alignment = 1
+
+[node name="LevelInfoPanel" type="PanelContainer" parent="UI" unique_id=1257069590]
+visible = false
+offset_left = 23.0
+offset_top = 48.0
+offset_right = 395.0
+offset_bottom = 89.0
+theme_override_styles/panel = SubResource("9")
+
+[node name="LevelInfoLabel" type="Label" parent="UI/LevelInfoPanel" unique_id=1257069591]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.47, 0.37, 0.4, 1)
+theme_override_colors/font_outline_color = Color(1, 0.98, 0.94, 0.95)
+theme_override_constants/outline_size = 6
+theme_override_font_sizes/font_size = 16
+text = "LVL 01   CAKES 0/7   MISS 0/5   SPD 190"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="FloatingResultLabel" type="Label" parent="UI" unique_id=584850097]
+visible = false
+offset_left = 145.0
+offset_top = 44.0
+offset_right = 298.0
+offset_bottom = 97.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0.36, 0.22, 0.21, 0.9)
+theme_override_constants/outline_size = 8
+theme_override_font_sizes/font_size = 26
+text = "PERFECT"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ShiftSummaryOverlay" type="Control" parent="UI" unique_id=301529568]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+
+[node name="Dimmer" type="Panel" parent="UI/ShiftSummaryOverlay" unique_id=1796949733]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("4")
+
+[node name="ShiftSummaryPanel" type="PanelContainer" parent="UI/ShiftSummaryOverlay" unique_id=197465959]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.12
+anchor_top = 0.18
+anchor_right = 0.88
+anchor_bottom = 0.74
+theme_override_styles/panel = SubResource("5")
+
+[node name="Margin" type="MarginContainer" parent="UI/ShiftSummaryOverlay/ShiftSummaryPanel" unique_id=990157754]
+layout_mode = 2
+theme_override_constants/margin_left = 22
+theme_override_constants/margin_top = 22
+theme_override_constants/margin_right = 22
+theme_override_constants/margin_bottom = 22
+
+[node name="Content" type="VBoxContainer" parent="UI/ShiftSummaryOverlay/ShiftSummaryPanel/Margin" unique_id=686746945]
+layout_mode = 2
+theme_override_constants/separation = 14
+
+[node name="LevelLabel" type="Label" parent="UI/ShiftSummaryOverlay/ShiftSummaryPanel/Margin/Content" unique_id=1532693242]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 28
+text = "Shift Results"
+horizontal_alignment = 1
+
+[node name="Stars" type="HBoxContainer" parent="UI/ShiftSummaryOverlay/ShiftSummaryPanel/Margin/Content" unique_id=438726648]
+layout_mode = 2
+theme_override_constants/separation = 18
+alignment = 1
+
+[node name="Star1" type="PanelContainer" parent="UI/ShiftSummaryOverlay/ShiftSummaryPanel/Margin/Content/Stars" unique_id=1266884283]
+custom_minimum_size = Vector2(62, 62)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StarBadgeFilled")
+
+[node name="Glyph" type="Label" parent="UI/ShiftSummaryOverlay/ShiftSummaryPanel/Margin/Content/Stars/Star1" unique_id=1266884284]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.98, 0.88, 1)
+theme_override_colors/font_outline_color = Color(0.84, 0.45, 0.08, 0.92)
+theme_override_constants/outline_size = 4
+theme_override_font_sizes/font_size = 34
+text = "*"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Star2" type="PanelContainer" parent="UI/ShiftSummaryOverlay/ShiftSummaryPanel/Margin/Content/Stars" unique_id=28065280]
+custom_minimum_size = Vector2(62, 62)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StarBadgeFilled")
+
+[node name="Glyph" type="Label" parent="UI/ShiftSummaryOverlay/ShiftSummaryPanel/Margin/Content/Stars/Star2" unique_id=28065281]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.98, 0.88, 1)
+theme_override_colors/font_outline_color = Color(0.84, 0.45, 0.08, 0.92)
+theme_override_constants/outline_size = 4
+theme_override_font_sizes/font_size = 34
+text = "*"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Star3" type="PanelContainer" parent="UI/ShiftSummaryOverlay/ShiftSummaryPanel/Margin/Content/Stars" unique_id=1595959479]
+custom_minimum_size = Vector2(62, 62)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StarBadgeFilled")
+
+[node name="Glyph" type="Label" parent="UI/ShiftSummaryOverlay/ShiftSummaryPanel/Margin/Content/Stars/Star3" unique_id=1595959480]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.98, 0.88, 1)
+theme_override_colors/font_outline_color = Color(0.84, 0.45, 0.08, 0.92)
+theme_override_constants/outline_size = 4
+theme_override_font_sizes/font_size = 34
+text = "*"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Stats" type="VBoxContainer" parent="UI/ShiftSummaryOverlay/ShiftSummaryPanel/Margin/Content" unique_id=210631197]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="PerfectLabel" type="Label" parent="UI/ShiftSummaryOverlay/ShiftSummaryPanel/Margin/Content/Stats" unique_id=1758310252]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.98, 0.86, 0.27, 1)
+theme_override_font_sizes/font_size = 22
+text = "Perfect: 0"
+
+[node name="GoodLabel" type="Label" parent="UI/ShiftSummaryOverlay/ShiftSummaryPanel/Margin/Content/Stats" unique_id=1567774610]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.45, 0.92, 0.56, 1)
+theme_override_font_sizes/font_size = 22
+text = "Good: 0"
+
+[node name="MissLabel" type="Label" parent="UI/ShiftSummaryOverlay/ShiftSummaryPanel/Margin/Content/Stats" unique_id=1431721025]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.48, 0.48, 1)
+theme_override_font_sizes/font_size = 22
+text = "Miss: 0"
+
+[node name="ScoreLabel" type="Label" parent="UI/ShiftSummaryOverlay/ShiftSummaryPanel/Margin/Content" unique_id=165024329]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 24
+text = "Final Score: 0"
+horizontal_alignment = 1
+
+[node name="RatingLabel" type="Label" parent="UI/ShiftSummaryOverlay/ShiftSummaryPanel/Margin/Content" unique_id=785235483]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.86, 0.9, 1, 1)
+theme_override_font_sizes/font_size = 20
+text = "Stars: 0 / 3"
+horizontal_alignment = 1
+
+[node name="UnlockReward" type="PanelContainer" parent="UI/ShiftSummaryOverlay/ShiftSummaryPanel/Margin/Content" unique_id=785235484]
+visible = false
+layout_mode = 2
+theme_override_styles/panel = SubResource("UnlockRewardCard")
+
+[node name="Margin" type="MarginContainer" parent="UI/ShiftSummaryOverlay/ShiftSummaryPanel/Margin/Content/UnlockReward" unique_id=785235485]
+layout_mode = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 10
+
+[node name="Row" type="HBoxContainer" parent="UI/ShiftSummaryOverlay/ShiftSummaryPanel/Margin/Content/UnlockReward/Margin" unique_id=785235486]
+layout_mode = 2
+theme_override_constants/separation = 12
+alignment = 1
+
+[node name="PreviewFrame" type="PanelContainer" parent="UI/ShiftSummaryOverlay/ShiftSummaryPanel/Margin/Content/UnlockReward/Margin/Row" unique_id=785235487]
+custom_minimum_size = Vector2(72, 72)
+layout_mode = 2
+theme_override_styles/panel = SubResource("UnlockPreviewFrame")
+
+[node name="Preview" type="TextureRect" parent="UI/ShiftSummaryOverlay/ShiftSummaryPanel/Margin/Content/UnlockReward/Margin/Row/PreviewFrame" unique_id=785235488]
+layout_mode = 2
+expand_mode = 1
+stretch_mode = 5
+
+[node name="NewRibbon" type="PanelContainer" parent="UI/ShiftSummaryOverlay/ShiftSummaryPanel/Margin/Content/UnlockReward/Margin/Row/PreviewFrame" unique_id=785235492]
+layout_mode = 2
+theme_override_styles/panel = SubResource("UnlockNewRibbon")
+
+[node name="Label" type="Label" parent="UI/ShiftSummaryOverlay/ShiftSummaryPanel/Margin/Content/UnlockReward/Margin/Row/PreviewFrame/NewRibbon" unique_id=785235493]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0.78, 0.24, 0.2, 0.68)
+theme_override_constants/outline_size = 2
+theme_override_font_sizes/font_size = 12
+text = "NEW"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Text" type="VBoxContainer" parent="UI/ShiftSummaryOverlay/ShiftSummaryPanel/Margin/Content/UnlockReward/Margin/Row" unique_id=785235489]
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_constants/separation = 2
+
+[node name="UnlockLabel" type="Label" parent="UI/ShiftSummaryOverlay/ShiftSummaryPanel/Margin/Content/UnlockReward/Margin/Row/Text" unique_id=785235490]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.87, 0.44, 1)
+theme_override_font_sizes/font_size = 18
+text = "New cake unlocked!"
+
+[node name="UnlockNameLabel" type="Label" parent="UI/ShiftSummaryOverlay/ShiftSummaryPanel/Margin/Content/UnlockReward/Margin/Row/Text" unique_id=785235491]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.96, 0.92, 1)
+theme_override_font_sizes/font_size = 22
+text = "Cherry Crown"
+
+[node name="ContinueLabel" type="Label" parent="UI/ShiftSummaryOverlay/ShiftSummaryPanel/Margin/Content" unique_id=1551906783]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.82, 0.82, 0.82, 1)
+theme_override_font_sizes/font_size = 18
+text = "Tap to continue"
+horizontal_alignment = 1
