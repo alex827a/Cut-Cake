@@ -158,6 +158,8 @@ func _start_level(level_index: int) -> void:
 		node.queue_free()
 	for node in get_tree().get_nodes_in_group("cake_pieces"):
 		node.queue_free()
+	for node in get_tree().get_nodes_in_group("cut_scraps"):
+		node.queue_free()
 
 	_current_level_index = clampi(level_index, 0, level_catalog.get_level_count() - 1)
 	_current_level = level_catalog.get_level(_current_level_index)
@@ -273,7 +275,7 @@ func _show_shift_summary() -> void:
 	summary_good_label.text = "Good: %d" % _good_count
 	summary_miss_label.text = "Miss: %d" % _miss_count
 	summary_score_label.text = "Final Score: %d" % final_score
-	summary_rating_label.text = "%s %d / 3" % [_filled_star_symbol(), stars]
+	summary_rating_label.text = "Stars: %d / 3" % stars
 	if _last_unlocked_variant != null:
 		summary_unlock_reward.visible = true
 		summary_unlock_label.text = "New cake unlocked!"
@@ -296,7 +298,7 @@ func _show_shift_summary() -> void:
 		star.visible = true
 		star.scale = Vector2.ZERO
 		star.position.y = 14.0
-		glyph.text = _filled_star_symbol()
+		glyph.text = "*"
 		if star_index < stars:
 			star.modulate = Color(1.0, 1.0, 1.0, 0.0)
 			glyph.modulate = Color(1.0, 1.0, 1.0, 1.0)
@@ -323,9 +325,6 @@ func _show_shift_summary() -> void:
 		unlock_tween.parallel().tween_property(summary_unlock_ribbon, "modulate:a", 1.0, 0.12)
 		unlock_tween.parallel().tween_property(summary_unlock_ribbon, "scale", Vector2.ONE, 0.16).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
 		unlock_tween.tween_property(summary_unlock_preview_frame, "scale", Vector2.ONE, 0.14).set_trans(Tween.TRANS_BOUNCE).set_ease(Tween.EASE_OUT)
-
-func _filled_star_symbol() -> String:
-	return char(0x1F31F)
 
 func _get_level_count() -> int:
 	return 0 if level_catalog == null else level_catalog.get_level_count()
@@ -417,11 +416,14 @@ func _apply_responsive_hud() -> void:
 	hint_label.anchor_right = 0.97
 	hint_label.anchor_bottom = 0.0
 	hint_label.offset_left = 0.0
-	hint_label.offset_top = top_padding + hud_height + 18.0
+	hint_label.offset_top = top_padding + hud_height + clampf(viewport_size.y * 0.08, 48.0, 92.0) + 50.0
 	hint_label.offset_right = 0.0
-	hint_label.offset_bottom = top_padding + hud_height + 60.0
+	hint_label.offset_bottom = hint_label.offset_top + 58.0
 	hint_label.scale = Vector2.ONE
 	hint_label.pivot_offset = Vector2.ZERO
+	hint_label.add_theme_color_override("font_color", Color(0.49, 0.32, 0.38, 1.0))
+	hint_label.add_theme_color_override("font_outline_color", Color(1.0, 0.95, 0.92, 0.98))
+	hint_label.add_theme_constant_override("outline_size", max(4, int(round(5.0 * compact_scale))))
 
 	hud_row.add_theme_constant_override("separation", row_separation)
 	stats_row.add_theme_constant_override("separation", max(6, int(round(10.0 * compact_scale))))
@@ -442,4 +444,4 @@ func _apply_responsive_hud() -> void:
 	speed_value_label.add_theme_font_size_override("font_size", max(14, int(round(22.0 * compact_scale))))
 	miss_icon.add_theme_font_size_override("font_size", max(14, int(round(22.0 * compact_scale))))
 	speed_icon.add_theme_font_size_override("font_size", max(10, int(round(12.0 * compact_scale))))
-	hint_label.add_theme_font_size_override("font_size", max(14, int(round(20.0 * compact_scale))))
+	hint_label.add_theme_font_size_override("font_size", max(18, int(round(24.0 * compact_scale))))

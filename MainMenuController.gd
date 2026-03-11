@@ -66,7 +66,7 @@ func _ready() -> void:
 	_level_select_margin = get_node("LevelSelectOverlay/LevelSelectPanel/Margin")
 	_level_select_title_label = get_node("LevelSelectOverlay/LevelSelectPanel/Margin/Content/TitleLabel")
 	_level_grid_scroll = get_node("LevelSelectOverlay/LevelSelectPanel/Margin/Content/LevelGridScroll")
-	_level_grid = get_node("LevelSelectOverlay/LevelSelectPanel/Margin/Content/LevelGridScroll/LevelGrid")
+	_level_grid = get_node("LevelSelectOverlay/LevelSelectPanel/Margin/Content/LevelGridScroll/LevelGridCenter/LevelGrid")
 	_level_select_back_button = get_node("LevelSelectOverlay/LevelSelectPanel/Margin/Content/BackButton")
 
 	_play_button.pressed.connect(_on_play_pressed)

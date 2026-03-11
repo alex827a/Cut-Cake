@@ -883,6 +883,7 @@ offset_top = -7.799988
 offset_right = 6.799988
 offset_bottom = -79.599976
 theme_override_styles/panel = SubResource("StyleBoxFlat_overlay_panel")
+self_modulate = Color(1, 0.988235, 0.984314, 1)
 
 [node name="Margin" type="MarginContainer" parent="LevelSelectOverlay/LevelSelectPanel" unique_id=1852263695]
 layout_mode = 2
@@ -898,7 +899,7 @@ alignment = 1
 
 [node name="TitleLabel" type="Label" parent="LevelSelectOverlay/LevelSelectPanel/Margin/Content" unique_id=1654418304]
 layout_mode = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(0.168627, 0.0980392, 0.156863, 1)
 theme_override_font_sizes/font_size = 30
 text = "Select Level"
 horizontal_alignment = 1
@@ -908,10 +909,17 @@ custom_minimum_size = Vector2(0, 260)
 layout_mode = 2
 size_flags_vertical = 3
 horizontal_scroll_mode = 0
+theme_override_constants/scroll_bar_separation = 12
 
-[node name="LevelGrid" type="GridContainer" parent="LevelSelectOverlay/LevelSelectPanel/Margin/Content/LevelGridScroll" unique_id=170598189]
+[node name="LevelGridCenter" type="CenterContainer" parent="LevelSelectOverlay/LevelSelectPanel/Margin/Content/LevelGridScroll" unique_id=170598190]
+custom_minimum_size = Vector2(0, 260)
 layout_mode = 2
-size_flags_vertical = 4
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="LevelGrid" type="GridContainer" parent="LevelSelectOverlay/LevelSelectPanel/Margin/Content/LevelGridScroll/LevelGridCenter" unique_id=170598189]
+layout_mode = 2
+size_flags_horizontal = 0
 theme_override_constants/h_separation = 14
 theme_override_constants/v_separation = 14
 columns = 2
@@ -919,5 +927,15 @@ columns = 2
 [node name="BackButton" type="Button" parent="LevelSelectOverlay/LevelSelectPanel/Margin/Content" unique_id=1307144045]
 custom_minimum_size = Vector2(0, 68)
 layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_focus_color = Color(1, 1, 1, 1)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_pressed_color = Color(1, 1, 1, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_settings_action")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_settings_action")
+theme_override_styles/hover = SubResource("StyleBoxFlat_settings_action")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_settings_action")
+theme_override_styles/focus = SubResource("StyleBoxFlat_settings_action")
 text = "Back"
 script = ExtResource("3_fx")

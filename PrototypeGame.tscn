@@ -35,20 +35,6 @@ shader_parameter/bottom_color = Color(0.98, 0.76, 0.82, 1)
 
 [sub_resource type="StyleBoxEmpty" id="14"]
 
-[sub_resource type="StyleBoxFlat" id="10"]
-bg_color = Color(0.49, 0.24, 0.19, 0.98)
-border_width_left = 6
-border_width_top = 6
-border_width_right = 6
-border_width_bottom = 6
-border_color = Color(1, 0.82, 0.37, 0.95)
-corner_radius_top_left = 24
-corner_radius_top_right = 24
-corner_radius_bottom_right = 24
-corner_radius_bottom_left = 24
-shadow_color = Color(1, 0.84, 0.44, 0.42)
-shadow_size = 8
-
 [sub_resource type="StyleBoxFlat" id="11"]
 bg_color = Color(1, 1, 1, 0.68)
 border_width_left = 4
@@ -63,6 +49,21 @@ corner_radius_bottom_left = 26
 shadow_color = Color(0.8, 0.62, 0.68, 0.18)
 shadow_size = 4
 shadow_offset = Vector2(0, 3)
+
+[sub_resource type="StyleBoxFlat" id="StatsBadgeMenu"]
+bg_color = Color(0.84, 0.61, 0.93, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.95, 0.85, 1, 0.94)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+shadow_color = Color(0.71, 0.48, 0.84, 0.28)
+shadow_size = 8
+shadow_offset = Vector2(0, 4)
 
 [sub_resource type="StyleBoxFlat" id="StatsBadgeCake"]
 bg_color = Color(0.96, 0.78, 0.86, 1)
@@ -109,20 +110,19 @@ shadow_color = Color(0.84, 0.62, 0.18, 0.28)
 shadow_size = 8
 shadow_offset = Vector2(0, 4)
 
-[sub_resource type="StyleBoxFlat" id="StatsBadgeMenu"]
-bg_color = Color(0.84, 0.61, 0.93, 1)
-border_width_left = 3
-border_width_top = 3
-border_width_right = 3
-border_width_bottom = 3
-border_color = Color(0.95, 0.85, 1, 0.94)
-corner_radius_top_left = 20
-corner_radius_top_right = 20
-corner_radius_bottom_right = 20
-corner_radius_bottom_left = 20
-shadow_color = Color(0.71, 0.48, 0.84, 0.28)
+[sub_resource type="StyleBoxFlat" id="10"]
+bg_color = Color(0.8392157, 0.6117647, 0.92941177, 1)
+border_width_left = 6
+border_width_top = 6
+border_width_right = 6
+border_width_bottom = 6
+border_color = Color(1, 0.82, 0.37, 0.95)
+corner_radius_top_left = 24
+corner_radius_top_right = 24
+corner_radius_bottom_right = 24
+corner_radius_bottom_left = 24
+shadow_color = Color(1, 0.84, 0.44, 0.42)
 shadow_size = 8
-shadow_offset = Vector2(0, 4)
 
 [sub_resource type="StyleBoxFlat" id="9"]
 bg_color = Color(1, 1, 1, 0.72)
@@ -286,7 +286,7 @@ offset_right = 102.0
 offset_bottom = 473.0
 color = Color(0.48, 0.55, 0.61, 0.34)
 
-[node name="TextureRect" type="TextureRect" parent="Conveyor" unique_id=85585368]
+[node name="table" type="TextureRect" parent="Conveyor" unique_id=85585368]
 offset_left = -400.0
 offset_top = -37.0
 offset_right = 1013.0
@@ -294,6 +294,19 @@ offset_bottom = 1140.0
 scale = Vector2(0.99937946, 0.993257)
 texture = ExtResource("3_qiutb")
 expand_mode = 5
+
+[node name="ScrapLayer" type="Node2D" parent="." unique_id=1777004101]
+z_index = 2
+
+[node name="SettleGuide" type="Marker2D" parent="ScrapLayer" unique_id=1777004102]
+position = Vector2(330, 808)
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1891779346]
+visible = false
+offset_left = -240.0
+offset_top = 726.0
+offset_right = 897.0
+offset_bottom = 1003.0
 
 [node name="CounterFront" type="ColorRect" parent="." unique_id=1478451273]
 visible = false
@@ -344,10 +357,10 @@ wait_time = 1.6
 [node name="HudPanel" type="PanelContainer" parent="UI" unique_id=1717814981]
 anchors_preset = 10
 anchor_right = 1.0
-offset_left = 14.0
+offset_left = -160.0
 offset_top = 10.0
-offset_right = -14.0
-offset_bottom = 82.0
+offset_right = 146.5
+offset_bottom = 83.0
 grow_horizontal = 2
 theme_override_styles/panel = SubResource("14")
 
@@ -361,21 +374,6 @@ theme_override_constants/margin_bottom = 0
 [node name="HudRow" type="HBoxContainer" parent="UI/HudPanel/Margin" unique_id=971018933]
 layout_mode = 2
 theme_override_constants/separation = 16
-
-[node name="LevelBadge" type="PanelContainer" parent="UI/HudPanel/Margin/HudRow" unique_id=804145592]
-custom_minimum_size = Vector2(198, 72)
-layout_mode = 2
-theme_override_styles/panel = SubResource("10")
-
-[node name="LevelValue" type="Label" parent="UI/HudPanel/Margin/HudRow/LevelBadge" unique_id=804145593]
-layout_mode = 2
-theme_override_colors/font_color = Color(1, 0.98, 0.93, 1)
-theme_override_colors/font_outline_color = Color(0.37, 0.17, 0.15, 0.7)
-theme_override_constants/outline_size = 5
-theme_override_font_sizes/font_size = 28
-text = "LEVEL 1"
-horizontal_alignment = 1
-vertical_alignment = 1
 
 [node name="StatsBar" type="PanelContainer" parent="UI/HudPanel/Margin/HudRow" unique_id=281581280]
 custom_minimum_size = Vector2(456, 72)
@@ -394,79 +392,6 @@ theme_override_constants/margin_bottom = 10
 layout_mode = 2
 theme_override_constants/separation = 16
 alignment = 1
-
-[node name="CakeIconBg" type="PanelContainer" parent="UI/HudPanel/Margin/HudRow/StatsBar/StatsMargin/StatsRow" unique_id=281581296]
-custom_minimum_size = Vector2(44, 44)
-layout_mode = 2
-theme_override_styles/panel = SubResource("StatsBadgeCake")
-
-[node name="CakeIcon" type="TextureRect" parent="UI/HudPanel/Margin/HudRow/StatsBar/StatsMargin/StatsRow/CakeIconBg" unique_id=281581283]
-custom_minimum_size = Vector2(30, 30)
-layout_mode = 2
-texture = ExtResource("9_7rt7g")
-expand_mode = 1
-stretch_mode = 5
-
-[node name="CakesValue" type="Label" parent="UI/HudPanel/Margin/HudRow/StatsBar/StatsMargin/StatsRow" unique_id=281581284]
-layout_mode = 2
-theme_override_colors/font_color = Color(0.43, 0.3, 0.34, 1)
-theme_override_font_sizes/font_size = 28
-text = "0/0"
-vertical_alignment = 1
-
-[node name="DividerA" type="ColorRect" parent="UI/HudPanel/Margin/HudRow/StatsBar/StatsMargin/StatsRow" unique_id=281581285]
-custom_minimum_size = Vector2(2, 38)
-layout_mode = 2
-color = Color(0.91, 0.82, 0.85, 0.8)
-
-[node name="MissIconBg" type="PanelContainer" parent="UI/HudPanel/Margin/HudRow/StatsBar/StatsMargin/StatsRow" unique_id=281581286]
-custom_minimum_size = Vector2(44, 44)
-layout_mode = 2
-theme_override_styles/panel = SubResource("12")
-
-[node name="MissIcon" type="Label" parent="UI/HudPanel/Margin/HudRow/StatsBar/StatsMargin/StatsRow/MissIconBg" unique_id=281581287]
-layout_mode = 2
-theme_override_colors/font_color = Color(1, 0.98, 0.98, 1)
-theme_override_colors/font_outline_color = Color(0.82, 0.31, 0.38, 0.75)
-theme_override_constants/outline_size = 3
-theme_override_font_sizes/font_size = 28
-text = "X"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="MissesValue" type="Label" parent="UI/HudPanel/Margin/HudRow/StatsBar/StatsMargin/StatsRow" unique_id=1537391414]
-layout_mode = 2
-theme_override_colors/font_color = Color(0.43, 0.3, 0.34, 1)
-theme_override_font_sizes/font_size = 28
-text = "0/0"
-vertical_alignment = 1
-
-[node name="DividerB" type="ColorRect" parent="UI/HudPanel/Margin/HudRow/StatsBar/StatsMargin/StatsRow" unique_id=281581288]
-custom_minimum_size = Vector2(2, 38)
-layout_mode = 2
-color = Color(0.91, 0.82, 0.85, 0.8)
-
-[node name="SpeedIconBg" type="PanelContainer" parent="UI/HudPanel/Margin/HudRow/StatsBar/StatsMargin/StatsRow" unique_id=281581289]
-custom_minimum_size = Vector2(44, 44)
-layout_mode = 2
-theme_override_styles/panel = SubResource("13")
-
-[node name="SpeedIcon" type="Label" parent="UI/HudPanel/Margin/HudRow/StatsBar/StatsMargin/StatsRow/SpeedIconBg" unique_id=281581290]
-layout_mode = 2
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_colors/font_outline_color = Color(0.76, 0.54, 0.12, 0.75)
-theme_override_constants/outline_size = 3
-theme_override_font_sizes/font_size = 14
-text = "SPD"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="SpeedValue" type="Label" parent="UI/HudPanel/Margin/HudRow/StatsBar/StatsMargin/StatsRow" unique_id=281581291]
-layout_mode = 2
-theme_override_colors/font_color = Color(0.43, 0.3, 0.34, 1)
-theme_override_font_sizes/font_size = 28
-text = "180"
-vertical_alignment = 1
 
 [node name="MenuButton" type="TextureButton" parent="UI/HudPanel/Margin/HudRow/StatsBar/StatsMargin/StatsRow" unique_id=281581292]
 custom_minimum_size = Vector2(44, 44)
@@ -517,10 +442,14 @@ expand_mode = 1
 
 [node name="MenuBadge" type="PanelContainer" parent="UI/HudPanel/Margin/HudRow/StatsBar/StatsMargin/StatsRow/MenuButton" unique_id=281581297]
 layout_mode = 1
-anchors_preset = 15
+anchors_preset = -1
+anchor_top = -0.022000002
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_right = 12.5
+offset_left = -25.5
+offset_top = -4.0099998
+offset_right = -2.5
+offset_bottom = 6.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
@@ -542,19 +471,110 @@ theme_override_font_sizes/font_size = 14
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="CakeIconBg" type="PanelContainer" parent="UI/HudPanel/Margin/HudRow/StatsBar/StatsMargin/StatsRow" unique_id=281581296]
+custom_minimum_size = Vector2(44, 44)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StatsBadgeCake")
+
+[node name="CakeIcon" type="TextureRect" parent="UI/HudPanel/Margin/HudRow/StatsBar/StatsMargin/StatsRow/CakeIconBg" unique_id=281581283]
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 2
+texture = ExtResource("9_7rt7g")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="CakesValue" type="Label" parent="UI/HudPanel/Margin/HudRow/StatsBar/StatsMargin/StatsRow" unique_id=281581284]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.43, 0.3, 0.34, 1)
+theme_override_font_sizes/font_size = 28
+text = "0/0"
+vertical_alignment = 1
+
+[node name="DividerA" type="ColorRect" parent="UI/HudPanel/Margin/HudRow/StatsBar/StatsMargin/StatsRow" unique_id=281581285]
+custom_minimum_size = Vector2(2, 38)
+layout_mode = 2
+color = Color(0.91, 0.82, 0.85, 0.8)
+
+[node name="MissIconBg" type="PanelContainer" parent="UI/HudPanel/Margin/HudRow/StatsBar/StatsMargin/StatsRow" unique_id=281581286]
+custom_minimum_size = Vector2(44, 44)
+layout_mode = 2
+theme_override_styles/panel = SubResource("12")
+
+[node name="MissIcon" type="Label" parent="UI/HudPanel/Margin/HudRow/StatsBar/StatsMargin/StatsRow/MissIconBg" unique_id=281581287]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.98, 0.98, 1)
+theme_override_colors/font_outline_color = Color(0.5347013, 0.16327721, 0.22179225, 0.7490196)
+theme_override_constants/outline_size = 3
+theme_override_font_sizes/font_size = 28
+text = "X"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MissesValue" type="Label" parent="UI/HudPanel/Margin/HudRow/StatsBar/StatsMargin/StatsRow" unique_id=1537391414]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.43, 0.3, 0.34, 1)
+theme_override_font_sizes/font_size = 28
+text = "0/0"
+vertical_alignment = 1
+
+[node name="DividerB" type="ColorRect" parent="UI/HudPanel/Margin/HudRow/StatsBar/StatsMargin/StatsRow" unique_id=281581288]
+custom_minimum_size = Vector2(2, 38)
+layout_mode = 2
+color = Color(0.91, 0.82, 0.85, 0.8)
+
+[node name="SpeedIconBg" type="PanelContainer" parent="UI/HudPanel/Margin/HudRow/StatsBar/StatsMargin/StatsRow" unique_id=281581289]
+custom_minimum_size = Vector2(44, 44)
+layout_mode = 2
+theme_override_styles/panel = SubResource("13")
+
+[node name="SpeedIcon" type="Label" parent="UI/HudPanel/Margin/HudRow/StatsBar/StatsMargin/StatsRow/SpeedIconBg" unique_id=281581290]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0.36283362, 0.25036904, 0.035628404, 0.7490196)
+theme_override_constants/outline_size = 3
+theme_override_font_sizes/font_size = 14
+text = "SPD"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SpeedValue" type="Label" parent="UI/HudPanel/Margin/HudRow/StatsBar/StatsMargin/StatsRow" unique_id=281581291]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.43, 0.3, 0.34, 1)
+theme_override_font_sizes/font_size = 28
+text = "180"
+vertical_alignment = 1
+
+[node name="LevelBadge" type="PanelContainer" parent="UI/HudPanel/Margin/HudRow" unique_id=804145592]
+custom_minimum_size = Vector2(198, 72)
+layout_mode = 2
+theme_override_styles/panel = SubResource("10")
+
+[node name="LevelValue" type="Label" parent="UI/HudPanel/Margin/HudRow/LevelBadge" unique_id=804145593]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.98, 0.93, 1)
+theme_override_colors/font_outline_color = Color(0.37, 0.17, 0.15, 0.7)
+theme_override_constants/outline_size = 5
+theme_override_font_sizes/font_size = 28
+text = "LEVEL 1"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="Hint" type="Label" parent="UI" unique_id=1561688049]
 anchors_preset = -1
 anchor_left = 0.04
 anchor_right = 0.96
-offset_left = -27.279999
-offset_top = 182.0
-offset_right = 45.28
-offset_bottom = 222.0
+offset_left = -96.28
+offset_top = 214.0
+offset_right = 100.28
+offset_bottom = 307.0
 grow_horizontal = 2
 theme_override_colors/font_color = Color(0.5, 0.38, 0.41, 1)
-theme_override_font_sizes/font_size = 18
-text = "Tap when the green center crosses under the knife."
+theme_override_font_sizes/font_size = 16
+text = "Tap when the green center
+crosses under the knife."
 horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
 
 [node name="LevelInfoPanel" type="PanelContainer" parent="UI" unique_id=1257069590]
 visible = false

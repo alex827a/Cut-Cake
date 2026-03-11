@@ -45,7 +45,7 @@ func _check_cut() -> void:
 	var resolved_cake: bool = result == "Miss"
 	if result != "Miss":
 		cake.was_cut = true
-		cake.split(float(evaluation["local_x"]), cake_piece_scene)
+		cake.split(float(evaluation["local_x"]), cake_piece_scene, result)
 	else:
 		cake.was_cut = true
 
