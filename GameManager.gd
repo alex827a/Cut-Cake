@@ -434,7 +434,7 @@ func _apply_responsive_hud() -> void:
 	cake_icon.custom_minimum_size = Vector2(24.0 * compact_scale, 24.0 * compact_scale)
 	miss_icon_bg.custom_minimum_size = Vector2(32.0 * compact_scale, 32.0 * compact_scale)
 	speed_icon_bg.custom_minimum_size = Vector2(32.0 * compact_scale, 32.0 * compact_scale)
-	menu_button.custom_minimum_size = Vector2(32.0 * compact_scale, 32.0 * compact_scale)
+	menu_button.custom_minimum_size = Vector2(96.0 * compact_scale, 48.0 * compact_scale)
 	divider_a.custom_minimum_size = Vector2(2.0, 26.0 * compact_scale)
 	divider_b.custom_minimum_size = Vector2(2.0, 26.0 * compact_scale)
 

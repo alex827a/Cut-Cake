@@ -9,7 +9,6 @@
 [ext_resource type="PackedScene" path="res://CakePiece.tscn" id="5"]
 [ext_resource type="Resource" uid="uid://bam8dh201gad2" path="res://PrototypeLevels.tres" id="6"]
 [ext_resource type="Texture2D" uid="uid://ijosm2163u1w" path="res://cake_icon.png" id="9_7rt7g"]
-[ext_resource type="Texture2D" uid="uid://da2g2ldymggrr" path="res://back.png" id="10_kru3w"]
 [ext_resource type="Texture2D" uid="uid://b7p0pycvtp7yo" path="res://backward-button-white-icon.png" id="11_pf4o8"]
 
 [sub_resource type="Shader" id="1"]
@@ -357,7 +356,7 @@ wait_time = 1.6
 [node name="HudPanel" type="PanelContainer" parent="UI" unique_id=1717814981]
 anchors_preset = 10
 anchor_right = 1.0
-offset_left = -160.0
+offset_left = -178.0
 offset_top = 10.0
 offset_right = 146.5
 offset_bottom = 83.0
@@ -394,7 +393,7 @@ theme_override_constants/separation = 16
 alignment = 1
 
 [node name="MenuButton" type="TextureButton" parent="UI/HudPanel/Margin/HudRow/StatsBar/StatsMargin/StatsRow" unique_id=281581292]
-custom_minimum_size = Vector2(44, 44)
+custom_minimum_size = Vector2(112, 56)
 layout_mode = 2
 tooltip_text = "Main Menu"
 mouse_filter = 1
@@ -402,10 +401,10 @@ mouse_filter = 1
 [node name="Chevron" type="Control" parent="UI/HudPanel/Margin/HudRow/StatsBar/StatsMargin/StatsRow/MenuButton" unique_id=281581293]
 visible = false
 anchors_preset = 0
-offset_left = 2.5
-offset_top = -6.0
-offset_right = 31.5
-offset_bottom = 43.0
+offset_left = -20.0
+offset_top = 1.0
+offset_right = 43.0
+offset_bottom = 50.0
 mouse_filter = 2
 
 [node name="TopStroke" type="ColorRect" parent="UI/HudPanel/Margin/HudRow/StatsBar/StatsMargin/StatsRow/MenuButton/Chevron" unique_id=281581294]
@@ -437,18 +436,16 @@ offset_left = -7.0
 offset_top = 5.0
 offset_right = 35.0
 offset_bottom = 46.0
-texture = ExtResource("10_kru3w")
 expand_mode = 1
 
 [node name="MenuBadge" type="PanelContainer" parent="UI/HudPanel/Margin/HudRow/StatsBar/StatsMargin/StatsRow/MenuButton" unique_id=281581297]
 layout_mode = 1
-anchors_preset = -1
-anchor_top = -0.022000002
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -25.5
-offset_top = -4.0099998
-offset_right = -2.5
+offset_left = -9.75
+offset_top = -8.0
+offset_right = -13.75
 offset_bottom = 6.0
 grow_horizontal = 2
 grow_vertical = 2
@@ -461,15 +458,6 @@ mouse_filter = 2
 texture = ExtResource("11_pf4o8")
 expand_mode = 1
 stretch_mode = 5
-
-[node name="SpeedIcon" type="Label" parent="UI/HudPanel/Margin/HudRow/StatsBar/StatsMargin/StatsRow/MenuButton/MenuBadge" unique_id=707299289]
-layout_mode = 2
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_colors/font_outline_color = Color(0.76, 0.54, 0.12, 0.75)
-theme_override_constants/outline_size = 3
-theme_override_font_sizes/font_size = 14
-horizontal_alignment = 1
-vertical_alignment = 1
 
 [node name="CakeIconBg" type="PanelContainer" parent="UI/HudPanel/Margin/HudRow/StatsBar/StatsMargin/StatsRow" unique_id=281581296]
 custom_minimum_size = Vector2(44, 44)
